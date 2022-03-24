@@ -3,7 +3,6 @@ package com.app.demo.service.Impl;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
-import java.util.stream.Collector;
 import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,14 +24,14 @@ public class UserSearchServiceImpl implements UserSearchService{
 	private FriendServiceImpl friendServiceImpl;
 
 	@Override
-	public List<User> getAllUsers() {
+	public List<User> getAllUser() {
 		// TODO Auto-generated method stub
 		return userRespository.findAll();
 	}
 
 	
 	@Override
-	public List<UserDto> getAllFriendsForUser(int requestedUserId) {
+	public List<UserDto> getAllFriendForUser(Integer requestedUserId) {
 		// TODO Auto-generated method stub
 		List<User> users= userRespository.findAll();
 		List<Friend> friends= friendServiceImpl.findFriendsByUserId(requestedUserId);

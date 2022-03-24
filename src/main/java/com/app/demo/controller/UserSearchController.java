@@ -9,28 +9,24 @@ import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.app.demo.constants.Constants;
+import com.app.demo.httpresponse.HttpStatusResponse;
 import com.app.demo.model.User;
 import com.app.demo.service.UserSearchService;
+import com.app.demo.util.ResponseUtil;
 
 
 @RestController
 @CrossOrigin
 public class UserSearchController {
 	@Autowired
-	private UserSearchService serv1;
-	
-//	@GetMapping("/users")
-//	public ResponseEntity<HttpStatusResponse> List<User> getAllUsers(){
-//		User user = null;
-//		user = serv1.getAllUsers();
-//		return ResponseUtil.prepareSuccessResponse(HttpStatus.OK.value(),user,"Data retrevial Successfully");
-//		return serv1.getAllUsers();
-//	}
+	private UserSearchService userSearchService;
 	
 	@GetMapping("/users")
-	public ResponseEntity <List<User>> getAllUsers(){
-		List<User> u = null;
-		u = serv1.getAllUsers();
-	return new ResponseEntity(u,HttpStatus.OK);
+	public ResponseEntity<HttpStatusResponse> getAllUser(){
+		List<User> users = userSearchService.getAllUser();
+		return ResponseUtil.prepareHttpResponse(HttpStatus.OK.value(),users,Constants.MESSAGE_RETRIVAL);
+		
 	}
+	
 }

@@ -6,8 +6,8 @@ import com.app.demo.model.User;
 import com.app.demo.model.UserDto;
 
 public interface UserSearchService {
-	List<User> getAllUsers();
+	List<User> getAllUser();
 	
-	List<UserDto> getAllFriendsForUser(int requestedUserId);
+	List<UserDto> getAllFriendForUser(Integer requestedUserId);
 
 }

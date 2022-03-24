@@ -13,17 +13,9 @@ import com.app.demo.util.ResponseUtil;
 public class ControllerAdvicerConfig {
 	
 	
-//	public ResponseEntity<Response> handleValidationException(ValidationException e) {
-//		return ResponseUtil.prepareHttpResponse(HttpStatus.BAD_REQUEST.value(), null, e.getMessage());
-//	}
-	
-	public ResponseEntity<HttpStatusResponse> handleValidationException1(ValidationException e) {
-		return ResponseUtil.prepareSuccessResponse(HttpStatus.BAD_REQUEST.value(), null, e.getMessage());
-	}
-	
 	@ExceptionHandler
 	public ResponseEntity<HttpStatusResponse> handleValidationException(ValidationException e) {
-		return ResponseUtil.prepareSuccessResponse(HttpStatus.INTERNAL_SERVER_ERROR.value(), null, e.getMessage());
+		return ResponseUtil.prepareFailedResponse(HttpStatus.BAD_REQUEST.value(), null, e.getMessage());
 	}
 	
 
