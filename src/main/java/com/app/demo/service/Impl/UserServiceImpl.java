@@ -2,10 +2,11 @@ package com.app.demo.service.Impl;
 
 
 
+import java.util.Objects;
+
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Service;
-import org.springframework.util.StringUtils;
+
 
 import com.app.demo.exception.ValidationException;
 import com.app.demo.model.User;
@@ -34,45 +35,43 @@ public class UserServiceImpl implements UserService{
 	}
 
 	@Override
-	public void deleteUser(int id) {
+	public void deleteUser(Integer id) {
 		// TODO Auto-generated method stub
 		userRespository.deleteById(id);
 	}
 
-	
-	
-
 	@Override
-	public User findByUserEmail(String emailId) {
+	public User findByUserEmail(String email) {
 		// TODO Auto-generated method stub
 		User c = new User();
-		c = userRespository.findByEmailId(emailId);
+		c = userRespository.findByEmail(email);
 		return c;
 	}
 
 	@Override
-	public User getUsersById(int id) {
+	public User getUserById(Integer id) {
 		// TODO Auto-generated method stub
 		return userRespository.findById(id).get();
 	}
 
 	@Override
-	public User getUserByEmailIdAndPassword(String emailId, String password) {
+	public User getUserByEmailAndPassword(String email, String password) {
 		// TODO Auto-generated method stub
-		return userRespository.findByEmailIdAndPassword(emailId, password);
+		return userRespository.findByEmailAndPassword(email, password);
 	}
 	
 	private void validateUser(User user) throws ValidationException {
-		if(StringUtils.isEmpty(user.getEmailId())) {
+		if(Objects.isNull(user.getEmail())){
 			throw new ValidationException("Email id should be mandatory");
 		}
-		if(StringUtils.isEmpty(user.getPassword()) || user.getPassword().trim().equals("")) {
+		
+		if(Objects.isNull(user.getPassword()) || user.getPassword().trim().equals("")) {
 			throw new ValidationException("Password should be mandatory");
 		}
-		if(StringUtils.isEmpty(user.getMobile())) {
+		if(Objects.isNull(user.getMobile())) {
 			throw new ValidationException("Mobile should be mandatory");
 		}
-		if(StringUtils.isEmpty(user.getFullName())) {
+		if(Objects.isNull(user.getFullName())) {
 			throw new ValidationException("FullName should be mandatory");
 		}
 	}
@@ -80,13 +79,8 @@ public class UserServiceImpl implements UserService{
 	@Override	
 	public User updateUserStatus(Integer id,boolean userStatus) {
 		
-		//User user = service.getUsersById(id);
-		//User user = new User();
-		//user.setUserStatus(user.isUserStatus());
+		
 		User user = userRespository.findById(id).get();
-		 //   user.setUserStatus(user.getUserStatus());
-		// user.setEmailId(user.getEmailId());
-		// user.setUserStatus(user.getUserStatus());
 	     user.setUserStatus(userStatus);
 		return userRespository.save(user);
 	}

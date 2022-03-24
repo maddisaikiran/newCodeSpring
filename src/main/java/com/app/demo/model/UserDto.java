@@ -5,7 +5,7 @@ import org.springframework.util.CollectionUtils;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
-import lombok.Getter;
+
 import lombok.NoArgsConstructor;
 import lombok.ToString;
 
@@ -21,7 +21,7 @@ public class UserDto {
 		
 		private Long mobile;
 	
-		private String emailId;
+		private String email;
 	
 		private String password;
 		
@@ -37,7 +37,7 @@ public class UserDto {
 			userDto.setId(user.getId());
 			userDto.setFullName(user.getFullName());
 			userDto.setMobile(user.getMobile());
-			userDto.setEmailId(user.getEmailId());
+			userDto.setEmail(user.getEmail());
 			userDto.setPassword(user.getPassword());
 			if(!CollectionUtils.isEmpty(user.getFriend())) {
 			userDto.setFriend(FriendDto.convert(user.getFriend().get(0)));

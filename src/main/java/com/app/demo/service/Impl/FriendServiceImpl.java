@@ -29,17 +29,17 @@ public class FriendServiceImpl implements FriendService{
 	@Override
 	public Friend createRequest(Friend friend) {
 		// TODO Auto-generated method stub
-		FriendStatus friendStatus= friendStatusRepository.findByCode(friend.getStatusCode());
+		FriendStatus friendStatus= friendStatusRepository.findByStatus(friend.getStatusCode());
 		friend.setStatus(friendStatus);
 		//new code
-		friend.setUser(userRespository.findById(friend.getUser().getId()).get());
+		//friend.setUser(userRespository.findById(friend.getUser().getId()).get());
 		//new code
 		friend.setFriend(userRespository.findById(friend.getFriend().getId()).get());
 		return friendRepository.save(friend);
 	}
 
 	@Override
-	public List<Friend> getAllFriendRequests() {
+	public List<Friend> getAllFriendRequest() {
 		// TODO Auto-generated method stub
 		return friendRepository.findAll();
 	}

@@ -3,24 +3,25 @@ package com.app.demo.model;
 import java.util.List;
 
 import javax.persistence.CascadeType;
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
+
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
-import javax.persistence.Transient;
+
 import javax.persistence.UniqueConstraint;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 
 import org.hibernate.annotations.ColumnDefault;
 import org.springframework.stereotype.Component;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.annotation.JsonManagedReference;
+
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -33,7 +34,7 @@ import lombok.ToString;
 @Data
 @Entity
 @Table(name = "user", uniqueConstraints = @UniqueConstraint(
-		name="uk_sample2_fullName_emailId_mobile",columnNames= {"fullName","emailId","mobile"}))
+		name="uk_sample2_fullName_email_mobile",columnNames= {"fullName","email","mobile"}))
         
 
 
@@ -45,31 +46,29 @@ public class User {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Integer id;
+	
 	@NotNull
+	@Column(length = 10)
+	@Size(min=3, max=10)
 	private String fullName;
 	
 	@NotNull
+	@Column(length = 10)
 	private Long mobile;
+	
 	@NotNull
 	@Email
-	private String emailId;
+	@Column(length = 20)
+	private String email;
+	
 	@NotNull
+	@Column(length=10)
+	@Size(min=3,max=10)
 	private String password;
 	
 	@ColumnDefault("true")
 	private boolean userStatus;
 	
-//	@JsonIgnore
-//	@ManyToOne
-//	@JoinColumn(name = "adminId", referencedColumnName = "adminId")
-//	private Admin admin;
-	
-//	@JsonManagedReference
-//	@OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
-//	@ToString.Exclude
-//	private List<Friend> friend;
-	
-//	private Friend friend;
 	
 	@JsonIgnore
 	@OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
@@ -80,17 +79,7 @@ public class User {
 	@JsonIgnore
 	@OneToMany(mappedBy ="user",cascade = CascadeType.ALL )
 	@ToString.Exclude
-	private List<Timeline> mytimelines;
-	
-	
-	@JsonIgnore
-	@OneToMany(mappedBy ="user",cascade = CascadeType.ALL )
-	@ToString.Exclude
-	private List<Message> message;
-	
-	
-	
-	
+	private List<Timeline> timelines;	
 	
 	
 }
