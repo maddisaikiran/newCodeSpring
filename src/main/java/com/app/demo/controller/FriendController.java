@@ -29,8 +29,8 @@ public class FriendController {
 	
 	@PostMapping("/friends/createrequest")
 	public ResponseEntity<HttpStatusResponse> createRequest(@Valid @RequestBody Friend friend) {
-		Friend friend2 = friendService.createRequest(friend);
-		return ResponseUtil.prepareSuccessResponse(HttpStatus.CREATED.value(), friend2,Constants.MESSAGE_FRIEND_REQUEST);
+		Friend friendObject = friendService.createRequest(friend);
+		return ResponseUtil.prepareSuccessResponse(HttpStatus.CREATED.value(), friendObject,Constants.MESSAGE_FRIEND_REQUEST);
 		
 	}
 	

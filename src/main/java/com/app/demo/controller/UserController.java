@@ -35,9 +35,9 @@ public class UserController {
 	@PostMapping("")
 	public ResponseEntity<HttpStatusResponse> addUser(@Valid @RequestBody User user) throws ValidationException {
 
-		 User user2  = userService.addUser(user);
+		 user  = userService.addUser(user);
 		logger.info("User Created successfully");
-		return ResponseUtil.prepareSuccessResponse(HttpStatus.CREATED.value(), user2,Constants.MESSAGE);
+		return ResponseUtil.prepareSuccessResponse(HttpStatus.CREATED.value(), user,Constants.MESSAGE);
 		
 	}
 
@@ -48,15 +48,14 @@ public class UserController {
 		return ResponseUtil.prepareSuccessResponse(HttpStatus.CREATED.value(), user2,Constants.MESSAGE_UPDATE);
 	}
 
-	@DeleteMapping("s/{id}")
-	public ResponseEntity<HttpStatusResponse> deleteUser(@PathVariable int id){
+	@DeleteMapping("/{id}")
+	public ResponseEntity<HttpStatusResponse> deleteUser(@PathVariable Integer id){
 		userService.deleteUser(id);
 		logger.info("User Deleted Successfully");
 		return ResponseUtil.prepareSuccessResponse(HttpStatus.NO_CONTENT.value(), id,Constants.MESSAGE_DELETE);
 		
 	}
 	
-
 	@GetMapping("/user/{id}")
 	public ResponseEntity<HttpStatusResponse> getUserDetailsById(@PathVariable int id) {
 		User user = userService.getUserById(id);
@@ -69,7 +68,7 @@ public class UserController {
 		return userService.getUserByEmailAndPassword(user.getEmail(), user.getPassword());
 	}
 	
-	@PutMapping("/{id}/userStatus/{userStatus}")
+	@PutMapping("/{id}/status/{userStatus}")
 	public ResponseEntity<HttpStatusResponse> updateUserStatus(@PathVariable Integer id, @PathVariable boolean userStatus) {
 		User user = userService.updateUserStatus(id,userStatus);
 		return ResponseUtil.prepareSuccessResponse(HttpStatus.CREATED.value(), user,Constants.MESSAGE_STATUS);

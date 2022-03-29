@@ -1,0 +1,59 @@
+= FaceBook Getting Started With Spring REST Docs
+
+This is an example output for a service running at http://localhost:8080:
+
+== Post API Example
+
+.request
+include::{snippets}/addUser/http-request.adoc[]
+
+.response
+include::{snippets}/addUser/http-response.adoc[]
+
+
+== Delete API Example
+
+.request
+include::{snippets}/deleteUser/http-request.adoc[]
+
+.response
+include::{snippets}/deleteUser/http-response.adoc[]
+
+
+== Get API Example
+
+.request
+include::{snippets}/getUserByEmailAndPassword/http-request.adoc[]
+
+.response
+include::{snippets}/getUserByEmailAndPassword/http-response.adoc[]
+
+
+== Get API Example
+
+.request
+include::{snippets}/getUserDetailsById/http-request.adoc[]
+
+.response
+include::{snippets}/getUserDetailsById/http-response.adoc[]
+
+
+== Put API Example
+
+.request
+include::{snippets}/updateUser/http-request.adoc[]
+
+.response
+include::{snippets}/updateUser/http-response.adoc[]
+
+
+== Put API Example
+
+.request
+include::{snippets}/updateUserStatus/http-request.adoc[]
+
+.response
+include::{snippets}/updateUserStatus/http-response.adoc[]
+
+
+As you can see the format is very simple, and in fact you always get the same message.

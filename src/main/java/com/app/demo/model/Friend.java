@@ -26,7 +26,6 @@ import lombok.Setter;
 
 @Getter
 @Setter
-@Component
 @Data
 @Entity
 @Table(name="friend")
@@ -40,13 +39,11 @@ public class Friend {
 	
 	@ManyToOne
 	@JoinColumn(name = "user_id")
-
 	private User user;
 	
 	
 	@ManyToOne
 	@JoinColumn(name = "friend_id")
-
 	private User friend;
 	
 	@OneToOne
