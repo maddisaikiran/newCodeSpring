@@ -13,7 +13,7 @@ import com.app.demo.util.ResponseUtil;
 public class ControllerAdvicerConfig {
 	
 	
-	@ExceptionHandler
+	@ExceptionHandler(ValidationException.class)
 	public ResponseEntity<HttpStatusResponse> handleValidationException(ValidationException e) {
 		return ResponseUtil.prepareFailedResponse(HttpStatus.BAD_REQUEST.value(), null, e.getMessage());
 	}
