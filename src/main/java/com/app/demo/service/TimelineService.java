@@ -12,6 +12,8 @@ public interface TimelineService {
 
 	Timeline addTimeLine(Timeline timeline,Integer userId) throws ValidationException;
 	
+	  Timeline getTimelineByTimeId(Integer timeId);
+	
 	  List<Timeline> getAllMyTimeline();
 	  
 	  List<Timeline> getAllMyTimelineById(Integer id);
@@ -19,4 +21,5 @@ public interface TimelineService {
 	  
 	  List<Timeline> getUserByFriendByTimelineById(Integer userId);
 
+	  void deleteTimeline(Integer timeId);
 }

@@ -54,7 +54,7 @@ public class TimelineServiceTest {
     void setUp() throws Exception {
     	timeline = new Timeline();
     	timeline.setTimeId(33);
-    	timeline.setName("hi sasi");
+    	timeline.setImage(null);
     	timeline.setMessage("this is sasi");
     	
     	user = new User();

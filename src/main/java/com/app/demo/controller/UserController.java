@@ -33,19 +33,21 @@ public class UserController {
 	private UserService userService;
 
 	@PostMapping("")
-	public ResponseEntity<HttpStatusResponse> addUser(@Valid @RequestBody User user) throws ValidationException {
+	public ResponseEntity<HttpStatusResponse> addUser(@Valid @RequestBody User user) throws ValidationException{
 
 		 user  = userService.addUser(user);
 		logger.info("User Created successfully");
 		return ResponseUtil.prepareSuccessResponse(HttpStatus.CREATED.value(), user,Constants.MESSAGE);
+				
 		
 	}
 
 	@PutMapping("")
 	public ResponseEntity<HttpStatusResponse> updateUser(@Valid @RequestBody User user) throws ValidationException {
 		
-		User user2 = userService.updateUser(user);
-		return ResponseUtil.prepareSuccessResponse(HttpStatus.CREATED.value(), user2,Constants.MESSAGE_UPDATE);
+		User userDetails = userService.updateUser(user);
+		logger.info("User Updated successfully");
+		return ResponseUtil.prepareSuccessResponse(HttpStatus.CREATED.value(), userDetails,Constants.MESSAGE_UPDATE);
 	}
 
 	@DeleteMapping("/{id}")
@@ -62,17 +64,30 @@ public class UserController {
 		return ResponseUtil.prepareSuccessResponse(HttpStatus.OK.value(), user,Constants.MESSAGE_RETRIVAL);
 	}
 
+//	@PostMapping("/login")
+//	public ResponseEntity<HttpStatusResponse> getUserByEmailAndPassword(@RequestBody User user) {
+//		
+//		User userLogin = userService.getUserByEmailAndPassword(user.getEmail(), user.getPassword());
+//		logger.info("User login successfully");
+//		return ResponseUtil.prepareSuccessResponse(HttpStatus.OK.value(), userLogin, Constants.MESSAGE_LOGIN);
+//		
+//	}
+	
 	@PostMapping("/login")
 	public User getUserByEmailAndPassword(@RequestBody User user) {
+		logger.info("User login successfully");
 		
-		return userService.getUserByEmailAndPassword(user.getEmail(), user.getPassword());
+	  return userService.getUserByEmailAndPassword(user.getEmail(), user.getPassword());
+		
 	}
 	
 	@PutMapping("/{id}/status/{userStatus}")
 	public ResponseEntity<HttpStatusResponse> updateUserStatus(@PathVariable Integer id, @PathVariable boolean userStatus) {
 		User user = userService.updateUserStatus(id,userStatus);
+		logger.info("User status Updated Successfully");
 		return ResponseUtil.prepareSuccessResponse(HttpStatus.CREATED.value(), user,Constants.MESSAGE_STATUS);
 	}
+	
 	
 
 }

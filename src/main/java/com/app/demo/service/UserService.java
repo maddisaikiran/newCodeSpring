@@ -11,9 +11,7 @@ public interface UserService {
 	User getUserByEmailAndPassword(String email, String password);
 	User findByUserEmail(String email);
 	User getUserById(Integer id);
-	//User updateUserStatus(Integer id,User user);
 	User updateUserStatus(Integer id,boolean userStatus);
-	//User updateUserStatus(Integer id);
 	
 
 }

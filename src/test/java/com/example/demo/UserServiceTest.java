@@ -81,20 +81,9 @@ public class UserServiceTest {
     	when(userRespository.findByEmailAndPassword(email, password)).thenReturn(user);
     	assertEquals(user, userService.getUserByEmailAndPassword(email, password));
     }
-//    @Test
-//    @Order(5)
-//    public void updateUserStatusTest() {
-//    	Integer id = 1;
-//    	boolean userStatus = true;
-//    //when(userRespository.findById(user.getId()).get()).thenReturn(user);
-//    
-//  //  user.setUserStatus(false);
-//    when(userRespository.save(user)).thenReturn(user);
-//    assertEquals(user,userService.updateUserStatus(id, userStatus));
-//    }
     
     @Test
-    @Order(6)
+    @Order(5)
     public void deleteUserTest() {
     	when(userRespository.findById(user.getId())).thenReturn(Optional.of(user));
     	userService.deleteUser(user.getId());

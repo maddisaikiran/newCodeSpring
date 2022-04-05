@@ -49,6 +49,18 @@ public class TimelineServiceImpl implements TimelineService{
 		return usersOptional.isPresent() ? usersOptional.get() : null;
 	}
 
+	@Override
+	public Timeline getTimelineByTimeId(Integer timeId) {
+		// TODO Auto-generated method stub
+		return timelineRepository.findById(timeId).get();
+	}
+
+	@Override
+	public void deleteTimeline(Integer timeId) {
+		// TODO Auto-generated method stub
+		timelineRepository.deleteById(timeId);
+	}
+
 	
 
 	
