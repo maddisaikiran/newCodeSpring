@@ -13,6 +13,12 @@ include::{snippets}/addUser/http-response.adoc[]
 ===== CURL request
 include::{snippets}/addUser/curl-request.adoc[]
 
+===== Path Parameters
+include::{snippets}/addUser/path-parameters.adoc[]
+
+===== Response Fields
+include::{snippets}/addUser/response-fields.adoc[] 
+
 
 ==== Delete API Example
 
@@ -24,6 +30,9 @@ include::{snippets}/deleteUser/http-response.adoc[]
 
 ===== CURL request
 include::{snippets}/deleteUser/curl-request.adoc[]
+
+===== Path Parameters
+include::{snippets}/deleteUser/path-parameters.adoc[]
 
 
 ==== Get API Example
@@ -49,6 +58,12 @@ include::{snippets}/getUserDetailsById/http-response.adoc[]
 ===== CURL request
 include::{snippets}/getUserDetailsById/curl-request.adoc[]
 
+===== Path Parameters
+include::{snippets}/getUserDetailsById/path-parameters.adoc[]
+
+===== Response Fields
+include::{snippets}/getUserDetailsById/response-fields.adoc[] 
+
 
 ==== Put API Example
 
@@ -61,6 +76,9 @@ include::{snippets}/updateUser/http-response.adoc[]
 ===== CURL request
 include::{snippets}/updateUser/curl-request.adoc[]
 
+===== Response Fields
+include::{snippets}/updateUser/response-fields.adoc[] 
+
 
 ==== Put API Example
 
@@ -72,6 +90,12 @@ include::{snippets}/updateUserStatus/http-response.adoc[]
 
 ===== CURL request
 include::{snippets}/updateUserStatus/curl-request.adoc[]
+
+===== Path Parameters
+include::{snippets}/updateUserStatus/path-parameters.adoc[]
+
+===== Response Fields
+include::{snippets}/updateUserStatus/response-fields.adoc[] 
 
 
 === For Timeline Controller
@@ -87,6 +111,12 @@ include::{snippets}/getAllMyTimelineById/http-response.adoc[]
 ===== CURL request
 include::{snippets}/getAllMyTimelineById/curl-request.adoc[]
 
+===== Path Parameters
+include::{snippets}/getAllMyTimelineById/path-parameters.adoc[]
+
+===== Response Fields
+include::{snippets}/getAllMyTimelineById/response-fields.adoc[] 
+
 
 ==== Get API Example
 
@@ -98,6 +128,13 @@ include::{snippets}/getUserByFriendByTimelineById/http-response.adoc[]
 
 ===== CURL request
 include::{snippets}/getUserByFriendByTimelineById/curl-request.adoc[]
+
+===== Path Parameters
+include::{snippets}/getUserByFriendByTimelineById/path-parameters.adoc[]
+
+===== Response Fields
+include::{snippets}/getUserByFriendByTimelineById/response-fields.adoc[] 
+
 
 === For Likes and Comments Controller
 
@@ -112,6 +149,12 @@ include::{snippets}/getUserLikesByMessageById/http-response.adoc[]
 ===== CURL request
 include::{snippets}/getUserLikesByMessageById/curl-request.adoc[]
 
+===== Path Parameters
+include::{snippets}/getUserLikesByMessageById/path-parameters.adoc[]
+
+===== Response Fields
+include::{snippets}/getUserLikesByMessageById/response-fields.adoc[] 
+
 ==== Get API Example
 
 ===== Request structure 
@@ -123,6 +166,11 @@ include::{snippets}/getCommentsByMessageId/http-response.adoc[]
 ===== CURL request
 include::{snippets}/getCommentsByMessageId/curl-request.adoc[]
 
+===== Path Parameters
+include::{snippets}/getCommentsByMessageId/path-parameters.adoc[]
+
+===== Response Fields
+include::{snippets}/getCommentsByMessageId/response-fields.adoc[] 
 
 
 

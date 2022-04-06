@@ -58,20 +58,12 @@ public class UserController {
 		
 	}
 	
-	@GetMapping("/user/{id}")
+	@GetMapping("/{id}")
 	public ResponseEntity<HttpStatusResponse> getUserDetailsById(@PathVariable int id) {
 		User user = userService.getUserById(id);
 		return ResponseUtil.prepareSuccessResponse(HttpStatus.OK.value(), user,Constants.MESSAGE_RETRIVAL);
 	}
 
-//	@PostMapping("/login")
-//	public ResponseEntity<HttpStatusResponse> getUserByEmailAndPassword(@RequestBody User user) {
-//		
-//		User userLogin = userService.getUserByEmailAndPassword(user.getEmail(), user.getPassword());
-//		logger.info("User login successfully");
-//		return ResponseUtil.prepareSuccessResponse(HttpStatus.OK.value(), userLogin, Constants.MESSAGE_LOGIN);
-//		
-//	}
 	
 	@PostMapping("/login")
 	public User getUserByEmailAndPassword(@RequestBody User user) {

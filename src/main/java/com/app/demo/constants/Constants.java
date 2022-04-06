@@ -20,5 +20,7 @@ public class Constants {
 	public static final String MESSAGE_COMMENT_DELETE = "message comment deleted";
 	public static final String MESSAGE_TIMELINE_DELETE ="timeline deleted successfully";
 	public static final String MESSAGE_FRIENDS_FOUND ="all friend list found";
+	public static final String MESSAGE_CREATE ="message sent successfully";
+	public static final String MESSAGE_FOUND = "my messages found";
 	
 }
