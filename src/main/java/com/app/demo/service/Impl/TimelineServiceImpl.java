@@ -2,12 +2,11 @@ package com.app.demo.service.Impl;
 
 
 import java.util.List;
-import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.app.demo.exception.UserNotFoundException;
+import com.app.demo.exception.ResourceNotFoundException;
 import com.app.demo.model.Timeline;
 import com.app.demo.model.User;
 import com.app.demo.respository.TimelineRepository;
@@ -39,18 +38,22 @@ public class TimelineServiceImpl implements TimelineService{
 	public List<Timeline> getAllMyTimelineById(Integer id) {
 		
 		User user = userService.getUserById(id);
-		if(user == null) {
-			throw new UserNotFoundException("User not found");
-		}
 		List<Timeline> timelines = timelineRepository.findAllByUser(user);
+		if(timelines.size() == 0) {
+			throw new ResourceNotFoundException("Timeline not added for user Id: "+id);
+		}
 
 		return timelines;
 	}
 
 	@Override
 	public List<Timeline> getUserByFriendByTimelineById(Integer userId) {
-		 Optional<List<Timeline>> usersOptional = Optional.of(timelineRepository.findUserByFriendByTimelineById(userId));
-		return usersOptional.isPresent() ? usersOptional.get() : null;
+		
+		List<Timeline> timelines = timelineRepository.findUserByFriendByTimelineById(userId);
+		if(timelines.size() == 0) {
+			throw new ResourceNotFoundException("timeline not found, "+userId);
+		}
+		return timelines;
 	}
 
 	@Override
