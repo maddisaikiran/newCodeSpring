@@ -15,8 +15,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.app.demo.constants.Constants;
-import com.app.demo.httpresponse.HttpLikeStatusResponse;
-import com.app.demo.httpresponse.HttpUserStatusResponse;
+import com.app.demo.httpresponse.HttpGetStatusResponse;
+import com.app.demo.httpresponse.HttpStatusResponse;
 import com.app.demo.model.Comment;
 import com.app.demo.service.CommentService;
 import com.app.demo.util.ResponseUtil;
@@ -30,13 +30,13 @@ public class CommentController {
 	CommentService commentService;
 	
 	@PostMapping("")
-	public ResponseEntity<HttpUserStatusResponse> createComment(@RequestBody  Comment comment) {
+	public ResponseEntity<HttpStatusResponse> createComment(@RequestBody  Comment comment) {
 		Comment addComment = commentService.createComment(comment);
 		return ResponseUtil.prepareSuccessResponse(HttpStatus.CREATED.value(), addComment, Constants.MESSAGE_COMMENT);
 		
 	}
 	@DeleteMapping("/{commentId}")
-	public ResponseEntity<HttpUserStatusResponse> deleteComment(@PathVariable Integer commentId) {
+	public ResponseEntity<HttpStatusResponse> deleteComment(@PathVariable Integer commentId) {
 		commentService.deleteComment(commentId);
 		return ResponseUtil.prepareSuccessResponse(HttpStatus.NO_CONTENT.value(), commentId, Constants.MESSAGE_COMMENT_DELETE);
 	}
@@ -44,7 +44,7 @@ public class CommentController {
 	
 	
 	@GetMapping("/{timeId}")
-	public ResponseEntity<HttpLikeStatusResponse> getCommentsByMessageId(@PathVariable(value = "timeId") Integer timeId){
+	public ResponseEntity<HttpGetStatusResponse> getCommentsByMessageId(@PathVariable(value = "timeId") Integer timeId){
 		List<Comment> comments = commentService.getCommentsByMessageId(timeId);
 		return ResponseUtil.prepareHttpResponse(HttpStatus.OK.value(), comments, Constants.MESSAGE_COMMENTS);
 	}

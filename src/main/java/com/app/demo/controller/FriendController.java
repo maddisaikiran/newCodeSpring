@@ -15,8 +15,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.app.demo.constants.Constants;
-import com.app.demo.httpresponse.HttpLikeStatusResponse;
-import com.app.demo.httpresponse.HttpUserStatusResponse;
+import com.app.demo.httpresponse.HttpGetStatusResponse;
+import com.app.demo.httpresponse.HttpStatusResponse;
 import com.app.demo.model.Friend;
 import com.app.demo.service.FriendService;
 import com.app.demo.util.ResponseUtil;
@@ -30,7 +30,7 @@ public class FriendController {
 	
 	
 	@PostMapping("/createrequest")
-	public ResponseEntity<HttpUserStatusResponse> createRequest(@Valid @RequestBody Friend friend) {
+	public ResponseEntity<HttpStatusResponse> createRequest(@Valid @RequestBody Friend friend) {
 		Friend friendObject = friendService.createRequest(friend);
 		return ResponseUtil.prepareSuccessResponse(HttpStatus.CREATED.value(), friendObject,Constants.MESSAGE_FRIEND_REQUEST);
 		
@@ -38,7 +38,7 @@ public class FriendController {
 	
 	
 	@GetMapping("")
-	public ResponseEntity<HttpLikeStatusResponse> getAllFriendRequest(){
+	public ResponseEntity<HttpGetStatusResponse> getAllFriendRequest(){
 		List<Friend> friends= friendService.getAllFriendRequest();
 		return ResponseUtil.prepareHttpResponse(HttpStatus.OK.value(), friends, Constants.MESSAGE_FRIENDS_FOUND);
 	}

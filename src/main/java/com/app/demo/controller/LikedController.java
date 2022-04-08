@@ -14,8 +14,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.app.demo.constants.Constants;
-import com.app.demo.httpresponse.HttpLikeStatusResponse;
-import com.app.demo.httpresponse.HttpUserStatusResponse;
+import com.app.demo.httpresponse.HttpGetStatusResponse;
+import com.app.demo.httpresponse.HttpStatusResponse;
 import com.app.demo.model.Liked;
 import com.app.demo.service.LikedService;
 import com.app.demo.util.ResponseUtil;
@@ -29,14 +29,14 @@ public class LikedController {
 	LikedService likeService;
 	
 	@PostMapping("")
-	public ResponseEntity<HttpUserStatusResponse> createLike(@RequestBody Liked like) {
+	public ResponseEntity<HttpStatusResponse> createLike(@RequestBody Liked like) {
 		Liked addLike = likeService.createLike(like);
 		return ResponseUtil.prepareSuccessResponse(HttpStatus.CREATED.value(), addLike, Constants.MESSAGE_LIKE);
 	}
 	
 	
 	@GetMapping("/{timeId}")
-	public ResponseEntity<HttpLikeStatusResponse> getUserLikesByMessageById(@PathVariable(value = "timeId") Integer timeId) {
+	public ResponseEntity<HttpGetStatusResponse> getUserLikesByMessageById(@PathVariable(value = "timeId") Integer timeId) {
 		List<Liked> likes = likeService.getUserLikesByMessageById(timeId);
 		return ResponseUtil.prepareHttpResponse(HttpStatus.OK.value(), likes, Constants.MESSAGE_LIKES);
 	}
