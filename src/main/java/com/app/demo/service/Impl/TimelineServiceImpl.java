@@ -7,7 +7,7 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.app.demo.exception.ValidationException;
+import com.app.demo.exception.UserNotFoundException;
 import com.app.demo.model.Timeline;
 import com.app.demo.model.User;
 import com.app.demo.respository.TimelineRepository;
@@ -24,7 +24,7 @@ public class TimelineServiceImpl implements TimelineService{
 	UserService userService;
 	
 	@Override
-	public Timeline addTimeLine(Timeline timeline, Integer userId) throws ValidationException {
+	public Timeline addTimeLine(Timeline timeline, Integer userId) {
 		User user = userService.getUserById(userId);
 		timeline.setUser(user);
 		return timelineRepository.save(timeline);
@@ -39,7 +39,11 @@ public class TimelineServiceImpl implements TimelineService{
 	public List<Timeline> getAllMyTimelineById(Integer id) {
 		
 		User user = userService.getUserById(id);
+		if(user == null) {
+			throw new UserNotFoundException("User not found");
+		}
 		List<Timeline> timelines = timelineRepository.findAllByUser(user);
+
 		return timelines;
 	}
 

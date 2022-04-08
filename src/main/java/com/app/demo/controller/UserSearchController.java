@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.app.demo.constants.Constants;
-import com.app.demo.httpresponse.HttpStatusResponse;
+import com.app.demo.httpresponse.HttpLikeStatusResponse;
 import com.app.demo.model.User;
 import com.app.demo.service.UserSearchService;
 import com.app.demo.util.ResponseUtil;
@@ -23,7 +23,7 @@ public class UserSearchController {
 	private UserSearchService userSearchService;
 	
 	@GetMapping("/users")
-	public ResponseEntity<HttpStatusResponse> getAllUser(){
+	public ResponseEntity<HttpLikeStatusResponse> getAllUser(){
 		List<User> users = userSearchService.getAllUser();
 		return ResponseUtil.prepareHttpResponse(HttpStatus.OK.value(),users,Constants.MESSAGE_RETRIVAL);
 		

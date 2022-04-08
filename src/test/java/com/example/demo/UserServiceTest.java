@@ -10,26 +10,18 @@ import java.util.Optional;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import org.junit.jupiter.api.TestMethodOrder;
-import org.junit.jupiter.api.MethodOrderer.OrderAnnotation;
-import org.junit.jupiter.api.Order;
-import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.test.context.ContextConfiguration;
-import org.springframework.test.context.junit4.SpringRunner;
 
 import com.app.demo.SampleApplication;
-import com.app.demo.exception.ValidationException;
 import com.app.demo.model.User;
 import com.app.demo.respository.UserRespository;
 import com.app.demo.service.UserService;
 
-@RunWith(SpringRunner.class)
 @ContextConfiguration(classes = SampleApplication.class)
 @SpringBootTest
-@TestMethodOrder(OrderAnnotation.class)
 public class UserServiceTest {
 	
 	@Autowired
@@ -48,18 +40,15 @@ public class UserServiceTest {
 		user.setEmail("sathya@gmail.com");
 		user.setMobile(9894781235l);
 		user.setPassword("sathya");
-		//user.setUserStatus(false);
     }
     
     @Test
-    @Order(1)
-    public void addUserTest() throws ValidationException {
+    public void addUserTest() {
         when(userRespository.save(user)).thenReturn(user);
         assertEquals(user, userService.addUser(user));
     }
     
     @Test
-    @Order(2)
     public void getUserDetailsByIdTest() {
     	Integer id = 34;
     	when(userRespository.findById(id)).thenReturn(Optional.of(user));
@@ -67,14 +56,12 @@ public class UserServiceTest {
     }
     
     @Test
-    @Order(3)
-    public void updateUserTest() throws ValidationException {
+    public void updateUserTest() {
     	when(userRespository.save(user)).thenReturn(user);
     	user.setFullName("saikrishna");
     	assertNotEquals("chennai", userService.updateUser(user));
     }
     @Test
-    @Order(4)
     public void getUserByEmailAndPasswordTest() {
     	String email = "siva@gmail.com";
     	String password = "siva";
@@ -83,7 +70,6 @@ public class UserServiceTest {
     }
     
     @Test
-    @Order(5)
     public void deleteUserTest() {
     	when(userRespository.findById(user.getId())).thenReturn(Optional.of(user));
     	userService.deleteUser(user.getId());

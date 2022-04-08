@@ -2,7 +2,6 @@ package com.app.demo.service;
 
 import java.util.List;
 
-import com.app.demo.exception.ValidationException;
 import com.app.demo.model.Timeline;
 
 
@@ -10,7 +9,7 @@ import com.app.demo.model.Timeline;
 public interface TimelineService {
 	
 
-	Timeline addTimeLine(Timeline timeline,Integer userId) throws ValidationException;
+	Timeline addTimeLine(Timeline timeline,Integer userId);
 	
 	  Timeline getTimelineByTimeId(Integer timeId);
 	

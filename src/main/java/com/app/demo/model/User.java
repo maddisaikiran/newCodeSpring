@@ -14,6 +14,7 @@ import javax.persistence.Table;
 
 import javax.persistence.UniqueConstraint;
 import javax.validation.constraints.Email;
+import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
@@ -53,8 +54,9 @@ public class User {
 	@Column(length = 10)
 	private Long mobile;
 	
-	@NotNull
+	
 	@Email
+	@NotEmpty(message="email cannot be empty")
 	@Column(length = 20)
 	private String email;
 	

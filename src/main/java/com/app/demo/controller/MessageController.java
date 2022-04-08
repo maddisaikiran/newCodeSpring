@@ -14,7 +14,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.app.demo.constants.Constants;
-import com.app.demo.httpresponse.HttpStatusResponse;
+import com.app.demo.httpresponse.HttpLikeStatusResponse;
+import com.app.demo.httpresponse.HttpUserStatusResponse;
 import com.app.demo.model.Message;
 import com.app.demo.service.MessageService;
 import com.app.demo.util.ResponseUtil;
@@ -28,13 +29,13 @@ public class MessageController {
 	MessageService messageService;
 	
 	@PostMapping("")
-	public ResponseEntity<HttpStatusResponse> createMessage(@RequestBody Message message) {
+	public ResponseEntity<HttpUserStatusResponse> createMessage(@RequestBody Message message) {
 		Message createMessage = messageService.createMessage(message);
 		return ResponseUtil.prepareSuccessResponse(HttpStatus.CREATED.value(), createMessage, Constants.MESSAGE_CREATE);
 	}
 	
 	@GetMapping("/{friendId}")
-	public ResponseEntity<HttpStatusResponse> getMessagesByUserId(@PathVariable(value="friendId") Integer friendId){
+	public ResponseEntity<HttpLikeStatusResponse> getMessagesByUserId(@PathVariable(value="friendId") Integer friendId){
 		List<Message> messages = messageService.getMessagesByUserId(friendId);
 		return ResponseUtil.prepareHttpResponse(HttpStatus.OK.value(), messages, Constants.MESSAGE_FOUND);
 	}

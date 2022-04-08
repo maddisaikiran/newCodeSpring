@@ -11,6 +11,7 @@ public class Constants {
 	public static final String MESSAGE_STATUS = "User Status Updated";
 	public static final String MESSAGE_TIMELINE_ADDED = "Timeline added Successfully";
 	public static final String MESSAGE_FRIEND_REQUEST ="Friend Request sent";
+	public static final String MESSAGE_MY_TIMELINE ="My Timeline Found";
 	public static final String MESSAGE_TIMELINE_FOUND = "All Timeline Found";
 	public static final String MESSAGE_FRIEND_FOUND = "my friends Found ";
 	public static final String MESSAGE_LIKES = "message Likes found";

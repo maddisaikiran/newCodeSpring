@@ -1,12 +1,11 @@
 package com.app.demo.service.Impl;
 
 import java.util.List;
-import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-
+import com.app.demo.exception.ResourceNotFoundException;
 import com.app.demo.model.Message;
 import com.app.demo.respository.MessageRepository;
 import com.app.demo.respository.UserRespository;
@@ -33,8 +32,11 @@ public class MessageServiceImpl implements MessageService{
 	@Override
 	public List<Message> getMessagesByUserId(Integer friendId) {
 		// TODO Auto-generated method stub
-		 Optional<List<Message>> messageOptional = Optional.of(messageRepository.findMessagesByUserId(friendId));
-			return messageOptional.isPresent() ? messageOptional.get() : null;
+		 List<Message> messages = messageRepository.findMessagesByUserId(friendId);
+		 if(messages.size() == 0) {
+			 throw new ResourceNotFoundException("message not found");
+		 }
+			return messages;
 	}
 	
 

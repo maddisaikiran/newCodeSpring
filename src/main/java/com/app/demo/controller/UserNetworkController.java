@@ -13,7 +13,9 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.app.demo.constants.Constants;
-import com.app.demo.httpresponse.HttpStatusResponse;
+import com.app.demo.httpresponse.HttpLikeStatusResponse;
+
+import com.app.demo.httpresponse.HttpUserStatusResponse;
 import com.app.demo.model.User;
 import com.app.demo.model.UserDto;
 import com.app.demo.service.FriendService;
@@ -30,14 +32,14 @@ public class UserNetworkController {
 	private FriendService service;
 	
 	@PostMapping("/users/network/")
-	public ResponseEntity<HttpStatusResponse> getAllFriendForUser(@RequestBody Integer requestedUserId){
+	public ResponseEntity<HttpUserStatusResponse> getAllFriendForUser(@RequestBody Integer requestedUserId){
 		List<UserDto> userDtos = userSearchService.getAllFriendForUser(requestedUserId);
-		return ResponseUtil.prepareHttpResponse(HttpStatus.CREATED.value(), userDtos,Constants.MESSAGE_FRIEND_REQUEST);
+		return ResponseUtil.prepareSuccessResponse(HttpStatus.CREATED.value(), userDtos,Constants.MESSAGE_FRIEND_REQUEST);
 		
 	}
 	
 	@GetMapping("/friends/{friendId}")
-	public ResponseEntity <HttpStatusResponse> getUserByFriendByOrderStatusById(@PathVariable(value = "friendId") int friendId){
+	public ResponseEntity <HttpLikeStatusResponse> getUserByFriendByOrderStatusById(@PathVariable(value = "friendId") int friendId){
 		List<User> users = service.getUserByFriendByOrderStatusById(friendId);
 		return ResponseUtil.prepareHttpResponse(HttpStatus.OK.value(), users,Constants.MESSAGE_FRIEND_FOUND);
 	}

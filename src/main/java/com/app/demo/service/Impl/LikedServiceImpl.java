@@ -1,11 +1,11 @@
 package com.app.demo.service.Impl;
 
 import java.util.List;
-import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.app.demo.exception.ResourceNotFoundException;
 import com.app.demo.model.Liked;
 import com.app.demo.respository.LikedRepository;
 import com.app.demo.respository.TimelineRepository;
@@ -31,8 +31,12 @@ public class LikedServiceImpl implements LikedService{
 	@Override
 	public List<Liked> getUserLikesByMessageById(Integer timeId) {
 		// TODO Auto-generated method stub
-		 Optional<List<Liked>> likedOptional = Optional.of(likeRepository.findUserLikesByMessageById(timeId));
-			return likedOptional.isPresent() ? likedOptional.get() : null;
+		
+		List<Liked> likes = likeRepository.findUserLikesByMessageById(timeId);
+		if(likes.size() == 0) {
+			throw new ResourceNotFoundException("like not found");
+		}
+		return likes;
 	}
 	
 
