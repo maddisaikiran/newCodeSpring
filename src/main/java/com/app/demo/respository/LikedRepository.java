@@ -14,4 +14,6 @@ public interface LikedRepository extends JpaRepository<Liked, Integer>{
 	
 @Query(value="select * from User u LEFT JOIN Liked l on u.id = l.user_id LEFT JOIN Timeline t on t.time_id = l.message_id where t.time_id =:timeId", nativeQuery = true)
 List <Liked> findUserLikesByMessageById(@Param(value = "timeId") Integer timeId);
+
+
 }

@@ -1,28 +1,31 @@
 package com.example.demo.controller;
 
-import static org.hamcrest.CoreMatchers.is;
+
 import static org.springframework.restdocs.mockmvc.MockMvcRestDocumentation.document;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.delete;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.put;
+import static org.springframework.restdocs.mockmvc.RestDocumentationRequestBuilders.get;
+import static org.springframework.restdocs.mockmvc.RestDocumentationRequestBuilders.delete;
+import static org.springframework.restdocs.mockmvc.RestDocumentationRequestBuilders.post;
+import static org.springframework.restdocs.mockmvc.RestDocumentationRequestBuilders.put;
 import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
+
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.restdocs.AutoConfigureRestDocs;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.http.MediaType;
-import org.springframework.restdocs.RestDocumentationExtension;
+
+import static org.springframework.restdocs.request.RequestDocumentation.parameterWithName;
+import static org.springframework.restdocs.request.RequestDocumentation.pathParameters;
+import static org.springframework.restdocs.payload.PayloadDocumentation.responseFields;
+
+import static org.springframework.restdocs.payload.PayloadDocumentation.subsectionWithPath;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.web.servlet.MockMvc;
-
 
 
 import com.app.demo.SampleApplication;
@@ -31,7 +34,6 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 
 @SpringBootTest
 @ContextConfiguration(classes = SampleApplication.class)
-@ExtendWith(RestDocumentationExtension.class)
 @AutoConfigureRestDocs(outputDir = "target/generated-snippets")
 @AutoConfigureMockMvc
 public class UserControllerTest {
@@ -43,75 +45,111 @@ public class UserControllerTest {
 	@BeforeEach
 	void setUp() throws Exception{
 		
+		
 		user = new User();
-		user.setId(11);
-		user.setFullName("ramesh");
-		user.setEmail("ramesh@gmail.com");
-		user.setMobile(8278453891l);
-		user.setPassword("ramesh");
+		user.setId(14);
+		user.setFullName("rajesh");
+		user.setEmail("rajesh@gmail.com");
+		user.setMobile(8128467893l);
+		user.setPassword("rajesh");
 		user.setUserStatus(true);
 		
 	}
 	@Test
 	public void addUserControllerTest() throws Exception{
 		
-		mvc.perform(post("/user")
+		this.mvc.perform(post("/user")
 	    .content(asJsonString(user))
 	    .contentType(MediaType.APPLICATION_JSON)).andDo(print())
 		.andExpect(status().isOk())
-		.andDo(document("addUser"));
+		.andDo(document("addUser"
+				,responseFields(
+						subsectionWithPath("data").description("The user details"),
+	        			subsectionWithPath("statusCode").description("The user status code"),
+	        			subsectionWithPath("message").description("The user Message")
+	        			
+				)
+				));
 		
 	}
 	
 	@Test
 	public void getUserDetailsByIdControllerTest() throws Exception{
 		
-		mvc.perform(get("/user/user/{id}",1))
+		this.mvc.perform(get("/user/{id}",1))
 		.andExpect(status().isOk())
 		.andExpect(content().contentType(MediaType.APPLICATION_JSON))
 		.andDo(print())
-		.andExpect(jsonPath("$.data.id", is(1)))
-        .andExpect(jsonPath("$.data.fullName", is("saikiran")))
-        .andDo(document("getUserDetailsById"));
+        .andDo(document("getUserDetailsById"
+        		,pathParameters(
+				parameterWithName("id").description("get user data based on id"))
+        	,responseFields(
+        			subsectionWithPath("data").description("The user details"),
+        			subsectionWithPath("statusCode").description("The user status code"),
+        			subsectionWithPath("message").description("The user Message")
+        			
+
+					)
+        		));
 	
 }	
 	@Test
 	public void updateUserControllerTest() throws Exception{
-		user.setMobile(8017892126l);
-		mvc.perform(put("/user")
+		user.setMobile(8109808786l);
+		user.setEmail("ramesh@gmail.com");
+		user.setFullName("ramesh");
+		this.mvc.perform(put("/user")
 		 .content(asJsonString(user))
 		.contentType(MediaType.APPLICATION_JSON))
 		.andDo(print())
 		.andExpect(status().isOk())
-		.andDo(document("updateUser"));
+		.andDo(document("updateUser"
+				,responseFields(
+						subsectionWithPath("data").description("The user details"),
+	        			subsectionWithPath("statusCode").description("The user status code"),
+	        			subsectionWithPath("message").description("The user Message")
+	        			
+				)));
 	}
 	@Test
 	public void getUserByEmailAndPasswordControllerTest() throws Exception{
-		user.setEmail("ram@gmail.com");
-		user.setPassword("ram");
-		mvc.perform(post("/user/login")
+		user.setEmail("sai@gmail.com");
+		user.setPassword("sai");
+		this.mvc.perform(post("/user/login")
 		.content(asJsonString(user))
 		.contentType(MediaType.APPLICATION_JSON))
 		.andDo(print())
 	   .andExpect(status().isOk())
-	   .andDo(document("getUserByEmailAndPassword"));
+	   .andDo(document("getUserByEmailAndPassword"
+			   ));
 	}
 	@Test
 	public void updateUserStatusControllerTest() throws Exception{
 		user.setUserStatus(true);
-		mvc.perform(put("/user/{id}/status/{userStatus}",3,true)
+		this.mvc.perform(put("/user/{id}/status/{userStatus}",10,true)
 		.content(asJsonString(user))
 		.contentType(MediaType.APPLICATION_JSON))
 		.andDo(print())
 		.andExpect(status().isOk())
-		.andDo(document("updateUserStatus"));
+		.andDo(document("updateUserStatus"
+				,pathParameters(
+						parameterWithName("id").description("get user id"),
+				parameterWithName("userStatus").description("updated user status")),responseFields(
+						subsectionWithPath("data").description("The user details"),
+						subsectionWithPath("statusCode").description("The user status code"),
+	        			subsectionWithPath("message").description("The user Message")
+	        			
+				)));
 	}
 	@Test
 	public void deleteUserControllerTest() throws Exception{
-		mvc.perform(delete("/user/{id}",47))
+		this.mvc.perform(delete("/user/{id}",21))
 		.andDo(print())
 		.andExpect(status().isOk())
-		.andDo(document("deleteUser"));
+		.andDo(document("deleteUser"
+				,pathParameters(
+				parameterWithName("id").description("delete user based on id"))
+				));
 		
 	}
 	

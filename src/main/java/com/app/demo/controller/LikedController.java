@@ -31,14 +31,14 @@ public class LikedController {
 	@PostMapping("")
 	public ResponseEntity<HttpStatusResponse> createLike(@RequestBody Liked like) {
 		Liked addLike = likeService.createLike(like);
-		return ResponseUtil.prepareSuccessResponse(HttpStatus.CREATED.value(), addLike, Constants.MESSAGE_LIKE);
+		return ResponseUtil.prepareSuccessResponse(HttpStatus.CREATED.value(), addLike, Constants.LIKE_ADDED_SUCCESS);
 	}
 	
 	
 	@GetMapping("/{timeId}")
 	public ResponseEntity<HttpGetStatusResponse> getUserLikesByMessageById(@PathVariable(value = "timeId") Integer timeId) {
 		List<Liked> likes = likeService.getUserLikesByMessageById(timeId);
-		return ResponseUtil.prepareHttpResponse(HttpStatus.OK.value(), likes, Constants.MESSAGE_LIKES);
+		return ResponseUtil.prepareHttpResponse(HttpStatus.OK.value(), likes, Constants.LIKES_FOUND);
 	}
 	
 }

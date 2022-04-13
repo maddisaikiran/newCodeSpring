@@ -1,4 +1,4 @@
-package com.app.demo.service.Impl;
+package com.app.demo.service.impl;
 
 import java.util.List;
 import java.util.Optional;
@@ -28,7 +28,7 @@ public class FriendServiceImpl implements FriendService{
 	
 	@Override
 	public Friend createRequest(Friend friend) {
-		// TODO Auto-generated method stub
+
 		FriendStatus friendStatus= friendStatusRepository.findByStatus(friend.getStatusCode());
 		friend.setStatus(friendStatus);
 		friend.setFriend(userRespository.findById(friend.getFriend().getId()).get());
@@ -37,28 +37,32 @@ public class FriendServiceImpl implements FriendService{
 
 	@Override
 	public List<Friend> getAllFriendRequest() {
-		// TODO Auto-generated method stub
+
 		return friendRepository.findAll();
 	}
 
 	@Override
 	public Friend getFriendById(Integer id) {
-		// TODO Auto-generated method stub
+
 		return friendRepository.findById(id).get();
 	}
 	
 	
 	@Override
 	public List<Friend> findFriendsByUserId(Integer id) {
-		// TODO Auto-generated method stub
+
 		return friendRepository.findFriendsByUserId(id);
 	}
 
 	@Override
 	public List<User> getUserByFriendByOrderStatusById(Integer id) {
-		// TODO Auto-generated method stub
 		Optional<List<User>> usersOptional = Optional.of(userRespository.findUserByFriendByOrderStatusById(id));
-		return usersOptional.isPresent() ? usersOptional.get() : null;
+		if(usersOptional.isPresent()) {
+			return usersOptional.get();
+		}else {
+			return null;
+		}
+		//return usersOptional.isPresent() ? usersOptional.get() : null;
 	}
 	
 

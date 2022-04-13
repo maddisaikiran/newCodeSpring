@@ -25,7 +25,7 @@ public class UserSearchController {
 	@GetMapping("/users")
 	public ResponseEntity<HttpGetStatusResponse> getAllUser(){
 		List<User> users = userSearchService.getAllUser();
-		return ResponseUtil.prepareHttpResponse(HttpStatus.OK.value(),users,Constants.MESSAGE_RETRIVAL);
+		return ResponseUtil.prepareHttpResponse(HttpStatus.OK.value(),users,Constants.USER_DATA_RETRIVAL);
 		
 	}
 	

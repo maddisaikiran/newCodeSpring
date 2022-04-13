@@ -48,21 +48,21 @@ public class UserController {
 		
 		User userDetails = userService.updateUser(user);
 		logger.info("User Updated successfully");
-		return ResponseUtil.prepareSuccessResponse(HttpStatus.CREATED.value(), userDetails,Constants.MESSAGE_UPDATE);
+		return ResponseUtil.prepareSuccessResponse(HttpStatus.CREATED.value(), userDetails,Constants.USER_UPDATE);
 	}
 
 	@DeleteMapping("/{id}")
 	public ResponseEntity<HttpStatusResponse> deleteUser(@PathVariable Integer id){
 		userService.deleteUser(id);
 		logger.info("User Deleted Successfully");
-		return ResponseUtil.prepareSuccessResponse(HttpStatus.NO_CONTENT.value(), id,Constants.MESSAGE_DELETE);
+		return ResponseUtil.prepareSuccessResponse(HttpStatus.NO_CONTENT.value(), id,Constants.USER_DELETE);
 		
 	}
 	
 	@GetMapping("/{id}")
 	public ResponseEntity<HttpStatusResponse> getUserDetailsById(@PathVariable int id){
 		User user = userService.getUserById(id);
-		return ResponseUtil.prepareSuccessResponse(HttpStatus.OK.value(), user,Constants.MESSAGE_RETRIVAL);
+		return ResponseUtil.prepareSuccessResponse(HttpStatus.OK.value(), user,Constants.USER_DATA_RETRIVAL);
 	}
 
 	
@@ -78,7 +78,7 @@ public class UserController {
 	public ResponseEntity<HttpStatusResponse> updateUserStatus(@PathVariable Integer id, @PathVariable boolean userStatus) {
 		User user = userService.updateUserStatus(id,userStatus);
 		logger.info("User status Updated Successfully");
-		return ResponseUtil.prepareSuccessResponse(HttpStatus.CREATED.value(), user,Constants.MESSAGE_STATUS);
+		return ResponseUtil.prepareSuccessResponse(HttpStatus.CREATED.value(), user,Constants.USER_STATUS_UPDATED);
 	}
 	
 	

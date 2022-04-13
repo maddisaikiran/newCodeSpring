@@ -32,7 +32,7 @@ public class FriendController {
 	@PostMapping("/createrequest")
 	public ResponseEntity<HttpStatusResponse> createRequest(@Valid @RequestBody Friend friend) {
 		Friend friendObject = friendService.createRequest(friend);
-		return ResponseUtil.prepareSuccessResponse(HttpStatus.CREATED.value(), friendObject,Constants.MESSAGE_FRIEND_REQUEST);
+		return ResponseUtil.prepareSuccessResponse(HttpStatus.CREATED.value(), friendObject,Constants.FRIEND_REQUEST_SEND);
 		
 	}
 	
@@ -40,7 +40,7 @@ public class FriendController {
 	@GetMapping("")
 	public ResponseEntity<HttpGetStatusResponse> getAllFriendRequest(){
 		List<Friend> friends= friendService.getAllFriendRequest();
-		return ResponseUtil.prepareHttpResponse(HttpStatus.OK.value(), friends, Constants.MESSAGE_FRIENDS_FOUND);
+		return ResponseUtil.prepareHttpResponse(HttpStatus.OK.value(), friends, Constants.ALL_FRIENDS_FOUND);
 	}
 
 }

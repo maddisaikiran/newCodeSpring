@@ -1,4 +1,4 @@
-package com.app.demo.service.Impl;
+package com.app.demo.service.impl;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -18,34 +18,30 @@ public class UserServiceImpl implements UserService{
 	
 	@Override
 	public User addUser(User user)  {
-		// TODO Auto-generated method stub
 		
 		return userRespository.save(user);
 	}
 
 	@Override
 	public User updateUser(User user){
-		// TODO Auto-generated method stub
 		return userRespository.save(user);
 	}
 
 	@Override
 	public void deleteUser(Integer id) {
-		// TODO Auto-generated method stub
+
 		userRespository.deleteById(id);
 	}
 
 	@Override
 	public User findByUserEmail(String email) {
-		// TODO Auto-generated method stub
-		User c = new User();
-		c = userRespository.findByEmail(email);
-		return c;
+		
+		return userRespository.findByEmail(email);
+		 
 	}
 
 	@Override
 	public User getUserById(Integer id){
-		// TODO Auto-generated method stub
 		User user = userRespository.findById(id).get();
 		if(user == null) {
 			throw new UserNotFoundException("user not found");
@@ -56,7 +52,6 @@ public class UserServiceImpl implements UserService{
 
 	@Override
 	public User getUserByEmailAndPassword(String email, String password) {
-		// TODO Auto-generated method stub
 		return userRespository.findByEmailAndPassword(email, password);
 	}
 

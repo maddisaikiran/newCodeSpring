@@ -14,6 +14,7 @@ import javax.persistence.Lob;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import javax.validation.constraints.Size;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
@@ -38,7 +39,11 @@ public class Timeline {
 	@Column(columnDefinition= "MEDIUMBLOB")
 	private String image;
 	
+	@Column(length=100)
+	@Size(min=6,max=100)
 	private String message;
+	
+	private Integer count;
 
 	@JsonIgnore
 	@OneToMany(mappedBy ="timeline",cascade = CascadeType.ALL )

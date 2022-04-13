@@ -2,26 +2,26 @@ package com.app.demo.constants;
 
 public class Constants {
 
-	public static final int STATUS_CODE = 201;
 	public static final String MESSAGE = "User created";
-	public static final String MESSAGE_LOGIN ="User login successfully";
-	public static final String MESSAGE_UPDATE = "User Updated";
-	public static final String MESSAGE_DELETE = "User Deleted";
-	public static final String MESSAGE_RETRIVAL = "Data retrieval Successfully";
-	public static final String MESSAGE_STATUS = "User Status Updated";
-	public static final String MESSAGE_TIMELINE_ADDED = "Timeline added Successfully";
-	public static final String MESSAGE_FRIEND_REQUEST ="Friend Request sent";
-	public static final String MESSAGE_MY_TIMELINE ="My Timeline Found";
-	public static final String MESSAGE_TIMELINE_FOUND = "All Timeline Found";
-	public static final String MESSAGE_FRIEND_FOUND = "my friends Found ";
-	public static final String MESSAGE_LIKES = "message Likes found";
-	public static final String MESSAGE_COMMENTS = "message Comments found";
-	public static final String MESSAGE_LIKE = "message like added";
-	public static final String MESSAGE_COMMENT = "message comment added";
-	public static final String MESSAGE_COMMENT_DELETE = "message comment deleted";
-	public static final String MESSAGE_TIMELINE_DELETE ="timeline deleted successfully";
-	public static final String MESSAGE_FRIENDS_FOUND ="all friend list found";
-	public static final String MESSAGE_CREATE ="message sent successfully";
+	public static final String USER_LOGIN_SUCCESS ="User login successfully";
+	public static final String USER_UPDATE = "User Updated";
+	public static final String USER_DELETE = "User Deleted";
+	public static final String USER_DATA_RETRIVAL = "User Data retrieval Successfully";
+	public static final String USER_STATUS_UPDATED = "User Status Updated";
+	public static final String TIMELINE_ADDED_SUCCESS = "Timeline added Successfully";
+	public static final String FRIEND_REQUEST_SEND ="Friend Request sent";
+	public static final String MY_TIMELINE_FOUND ="My Timeline Found";
+	public static final String ALL_TIMELINE_FOUND = "All Timeline Found";
+	public static final String MESSAGE_NOT_FOUND ="Message not found";
+	public static final String MY_FRIENDS_FOUND = "my friends Found ";
+	public static final String LIKES_FOUND = "Likes found";
+	public static final String COMMENTS_FOUND = "Comments found";
+	public static final String LIKE_ADDED_SUCCESS = "Like added successfully";
+	public static final String COMMENT_ADDED_SUCCESS = "Comment added Successfully";
+	public static final String COMMENT_DELETE_SUCCESS = "Comment deleted Successfully";
+	public static final String TIMELINE_DELETE_SUCCESS ="timeline deleted Successfully";
+	public static final String ALL_FRIENDS_FOUND ="All friend list found";
+	public static final String MESSAGE_SENT_SUCCESS ="message sent successfully";
 	public static final String MESSAGE_FOUND = "my messages found";
 	
 }

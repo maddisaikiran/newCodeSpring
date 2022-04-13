@@ -8,5 +8,7 @@ public interface MessageService {
 
 	Message createMessage(Message message);
 	
-	List<Message> getMessagesByUserId(Integer friendId);
+	List<Message> getMessagesByFriendId(Integer friendId);
+	
+	List<Message> getMessagesByUserId(Integer userId);
 }

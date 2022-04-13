@@ -1,4 +1,4 @@
-package com.app.demo.service.Impl;
+package com.app.demo.service.impl;
 
 import java.util.List;
 
@@ -23,17 +23,15 @@ public class LikedServiceImpl implements LikedService{
 	
 	@Override
 	public Liked createLike(Liked like) {
-		// TODO Auto-generated method stub
 		like.setTimeline(timelineRepository.findById(like.getTimeline().getTimeId()).get());
 		return likeRepository.save(like);
 	}
 
 	@Override
 	public List<Liked> getUserLikesByMessageById(Integer timeId) {
-		// TODO Auto-generated method stub
 		
 		List<Liked> likes = likeRepository.findUserLikesByMessageById(timeId);
-		if(likes.size() == 0) {
+		if(likes.isEmpty()) {
 			throw new ResourceNotFoundException("like not found");
 		}
 		return likes;

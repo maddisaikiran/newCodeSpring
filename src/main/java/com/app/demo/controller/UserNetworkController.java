@@ -34,13 +34,13 @@ public class UserNetworkController {
 	@PostMapping("/users/network/")
 	public ResponseEntity<HttpStatusResponse> getAllFriendForUser(@RequestBody Integer requestedUserId){
 		List<UserDto> userDtos = userSearchService.getAllFriendForUser(requestedUserId);
-		return ResponseUtil.prepareSuccessResponse(HttpStatus.CREATED.value(), userDtos,Constants.MESSAGE_FRIEND_REQUEST);
+		return ResponseUtil.prepareSuccessResponse(HttpStatus.CREATED.value(), userDtos,Constants.FRIEND_REQUEST_SEND);
 		
 	}
 	
 	@GetMapping("/friends/{friendId}")
 	public ResponseEntity <HttpGetStatusResponse> getUserByFriendByOrderStatusById(@PathVariable(value = "friendId") int friendId){
 		List<User> users = service.getUserByFriendByOrderStatusById(friendId);
-		return ResponseUtil.prepareHttpResponse(HttpStatus.OK.value(), users,Constants.MESSAGE_FRIEND_FOUND);
+		return ResponseUtil.prepareHttpResponse(HttpStatus.OK.value(), users,Constants.MY_FRIENDS_FOUND);
 	}
 }

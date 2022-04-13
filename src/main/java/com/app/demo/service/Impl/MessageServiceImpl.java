@@ -1,4 +1,4 @@
-package com.app.demo.service.Impl;
+package com.app.demo.service.impl;
 
 import java.util.List;
 
@@ -23,19 +23,28 @@ public class MessageServiceImpl implements MessageService{
 	
 	@Override
 	public Message createMessage(Message message) {
-		// TODO Auto-generated method stub
+
 		message.setFriend(userRespository.findById(message.getFriend().getId()).get());
 		
 		return messageRepository.save(message);
 	}
 
 	@Override
-	public List<Message> getMessagesByUserId(Integer friendId) {
-		// TODO Auto-generated method stub
-		 List<Message> messages = messageRepository.findMessagesByUserId(friendId);
-		 if(messages.size() == 0) {
+	public List<Message> getMessagesByFriendId(Integer friendId) {
+
+		 List<Message> messages = messageRepository.findMessagesByFriendId(friendId);
+		 if(messages.isEmpty()) {
 			 throw new ResourceNotFoundException("message not found");
 		 }
+			return messages;
+	}
+
+	@Override
+	public List<Message> getMessagesByUserId(Integer userId) {
+		 List<Message> messages = messageRepository.findMessagesByUserId(userId);
+//		 if(messages.isEmpty()) {
+//			 throw new ResourceNotFoundException("message not found");
+//		 }
 			return messages;
 	}
 	

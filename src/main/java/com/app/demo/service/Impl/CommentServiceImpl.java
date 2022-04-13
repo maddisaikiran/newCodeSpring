@@ -1,4 +1,4 @@
-package com.app.demo.service.Impl;
+package com.app.demo.service.impl;
 
 import java.util.List;
 
@@ -22,16 +22,15 @@ public class CommentServiceImpl implements CommentService{
 	
 	@Override
 	public Comment createComment(Comment comment) {
-		// TODO Auto-generated method stub
 		comment.setTimeline(timelineRepository.findById(comment.getTimeline().getTimeId()).get());
 		return commentRepository.save(comment);
 	}
 
 	@Override
 	public List<Comment> getCommentsByMessageId(Integer timeId) {
-		// TODO Auto-generated method stub
+
 		List<Comment> comments = commentRepository.findCommentsByMessageId(timeId);
-		if(comments.size() == 0) {
+		if(comments.isEmpty()) {
 			throw new ResourceNotFoundException("comment not found");
 		}
 		return comments;
@@ -39,7 +38,7 @@ public class CommentServiceImpl implements CommentService{
 
 	@Override
 	public void deleteComment(Integer commentId) {
-		// TODO Auto-generated method stub
+
 		commentRepository.deleteById(commentId);
 	}
 	

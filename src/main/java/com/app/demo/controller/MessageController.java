@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.util.CollectionUtils;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -31,12 +32,22 @@ public class MessageController {
 	@PostMapping("")
 	public ResponseEntity<HttpStatusResponse> createMessage(@RequestBody Message message) {
 		Message createMessage = messageService.createMessage(message);
-		return ResponseUtil.prepareSuccessResponse(HttpStatus.CREATED.value(), createMessage, Constants.MESSAGE_CREATE);
+		return ResponseUtil.prepareSuccessResponse(HttpStatus.CREATED.value(), createMessage, Constants.MESSAGE_SENT_SUCCESS);
 	}
 	
-	@GetMapping("/{friendId}")
-	public ResponseEntity<HttpGetStatusResponse> getMessagesByUserId(@PathVariable(value="friendId") Integer friendId){
-		List<Message> messages = messageService.getMessagesByUserId(friendId);
+	@GetMapping("/friend/{friendId}")
+	public ResponseEntity<HttpGetStatusResponse> getMessagesByFriendId(@PathVariable(value="friendId") Integer friendId){
+		List<Message> messages = messageService.getMessagesByFriendId(friendId);
 		return ResponseUtil.prepareHttpResponse(HttpStatus.OK.value(), messages, Constants.MESSAGE_FOUND);
 	}
+	
+	@GetMapping("/user/{userId}")
+	public ResponseEntity<HttpGetStatusResponse> getMessagesByUserId(@PathVariable(value="userId") Integer userId){
+		List<Message> messages = messageService.getMessagesByUserId(userId);
+		if(CollectionUtils.isEmpty(messages)) {
+			return ResponseUtil.prepareMessageNotFound(HttpStatus.INTERNAL_SERVER_ERROR.value(), Constants.MESSAGE_NOT_FOUND);
+		}
+		return ResponseUtil.prepareHttpResponse(HttpStatus.OK.value(), messages, Constants.MESSAGE_FOUND);
+	}
+	
 }

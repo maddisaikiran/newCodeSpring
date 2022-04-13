@@ -32,13 +32,13 @@ public class CommentController {
 	@PostMapping("")
 	public ResponseEntity<HttpStatusResponse> createComment(@RequestBody  Comment comment) {
 		Comment addComment = commentService.createComment(comment);
-		return ResponseUtil.prepareSuccessResponse(HttpStatus.CREATED.value(), addComment, Constants.MESSAGE_COMMENT);
+		return ResponseUtil.prepareSuccessResponse(HttpStatus.CREATED.value(), addComment, Constants.COMMENT_ADDED_SUCCESS);
 		
 	}
 	@DeleteMapping("/{commentId}")
 	public ResponseEntity<HttpStatusResponse> deleteComment(@PathVariable Integer commentId) {
 		commentService.deleteComment(commentId);
-		return ResponseUtil.prepareSuccessResponse(HttpStatus.NO_CONTENT.value(), commentId, Constants.MESSAGE_COMMENT_DELETE);
+		return ResponseUtil.prepareSuccessResponse(HttpStatus.NO_CONTENT.value(), commentId, Constants.COMMENT_DELETE_SUCCESS);
 	}
 	
 	
@@ -46,6 +46,6 @@ public class CommentController {
 	@GetMapping("/{timeId}")
 	public ResponseEntity<HttpGetStatusResponse> getCommentsByMessageId(@PathVariable(value = "timeId") Integer timeId){
 		List<Comment> comments = commentService.getCommentsByMessageId(timeId);
-		return ResponseUtil.prepareHttpResponse(HttpStatus.OK.value(), comments, Constants.MESSAGE_COMMENTS);
+		return ResponseUtil.prepareHttpResponse(HttpStatus.OK.value(), comments, Constants.COMMENTS_FOUND);
 	}
 }

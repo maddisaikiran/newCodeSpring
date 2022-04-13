@@ -31,7 +31,7 @@ public class CommentControllerTest {
 	
 	@Test 
 	public void getCommentsByMessageIdControllerTest() throws Exception{
-		mvc.perform(get("/comment/{timeId}",2).contentType(MediaType.APPLICATION_JSON))
+		mvc.perform(get("/comment/{timeId}",5).contentType(MediaType.APPLICATION_JSON))
 		.andDo(print())
 		.andExpect(status().isOk())
 		.andDo(document("getCommentsByMessageId",pathParameters(
@@ -40,7 +40,7 @@ public class CommentControllerTest {
 	        			subsectionWithPath("data").description("The user comment details"),
 	        			subsectionWithPath("statusCode").description("The user comment status code"),
 	        			subsectionWithPath("message").description("The comment Message"),
-	        			subsectionWithPath("list1.[]").description("the user comments details in list")
+	        			subsectionWithPath("list.[]").description("the user comments details in list")
 
 						)));
 	}

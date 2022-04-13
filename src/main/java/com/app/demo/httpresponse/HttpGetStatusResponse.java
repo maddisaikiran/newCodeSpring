@@ -21,4 +21,15 @@ public class HttpGetStatusResponse {
 		successResponse.setList(Arrays.asList(data));
 		return successResponse;
 	}
+	
+	public static HttpGetStatusResponse setFailedResponse(int code,String message) {
+		HttpGetStatusResponse successResponse = new HttpGetStatusResponse();
+		successResponse.setStatusCode(code);
+		
+		successResponse.setMessage(message);
+		
+		return successResponse;
+	}
+	
+	
 }
