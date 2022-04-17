@@ -2,14 +2,14 @@ package com.app.demo.constants;
 
 public class Constants {
 
-	public static final String MESSAGE = "User created";
+	public static final String USER_CREATED_SUCCESS = "User created successfully";
 	public static final String USER_LOGIN_SUCCESS ="User login successfully";
-	public static final String USER_UPDATE = "User Updated";
-	public static final String USER_DELETE = "User Deleted";
+	public static final String USER_UPDATE_SUCCESS = "User Updated successfully";
+	public static final String USER_DELETE_SUCCESS = "User Deleted successfully";
 	public static final String USER_DATA_RETRIVAL = "User Data retrieval Successfully";
 	public static final String USER_STATUS_UPDATED = "User Status Updated";
 	public static final String TIMELINE_ADDED_SUCCESS = "Timeline added Successfully";
-	public static final String FRIEND_REQUEST_SEND ="Friend Request sent";
+	public static final String FRIEND_REQUEST_SEND ="Friend Request send";
 	public static final String MY_TIMELINE_FOUND ="My Timeline Found";
 	public static final String ALL_TIMELINE_FOUND = "All Timeline Found";
 	public static final String MESSAGE_NOT_FOUND ="Message not found";
@@ -25,7 +25,7 @@ public class Constants {
 	public static final String MESSAGE_FOUND = "my messages found";
 	public static final String FRIENDS_NOT_FOUND = "Friend not found";
 	public static final String USER_NOT_FOUND ="User not found";
-	public static final String GET_TIMEID  = "/{timeId}";
+	
 	
 	
 }

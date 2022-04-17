@@ -38,7 +38,7 @@ public class UserController {
 
 		 user  = userService.addUser(user);
 		logger.info("User Created successfully");
-		return ResponseUtil.prepareSuccessResponse(HttpStatus.CREATED.value(), user,Constants.MESSAGE);			
+		return ResponseUtil.prepareSuccessResponse(HttpStatus.CREATED.value(), user,Constants.USER_CREATED_SUCCESS);			
 		
 	}
 
@@ -46,14 +46,14 @@ public class UserController {
 	public ResponseEntity<HttpStatusResponse> updateUser(@Valid @RequestBody User user) {
 		User userDetails = userService.updateUser(user);
 		logger.info("User Updated successfully");
-		return ResponseUtil.prepareSuccessResponse(HttpStatus.CREATED.value(), userDetails,Constants.USER_UPDATE);
+		return ResponseUtil.prepareSuccessResponse(HttpStatus.CREATED.value(), userDetails,Constants.USER_UPDATE_SUCCESS);
 	}
 
 	@DeleteMapping("/{id}")
 	public ResponseEntity<HttpStatusResponse> deleteUser(@PathVariable Integer id){
 		userService.deleteUser(id);
 		logger.info("User Deleted Successfully");
-		return ResponseUtil.prepareSuccessResponse(HttpStatus.NO_CONTENT.value(), id,Constants.USER_DELETE);
+		return ResponseUtil.prepareSuccessResponse(HttpStatus.NO_CONTENT.value(), id,Constants.USER_DELETE_SUCCESS);
 	}
 	
 	@GetMapping("/{id}")

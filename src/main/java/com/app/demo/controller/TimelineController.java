@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.app.demo.constants.Constants;
+import com.app.demo.constants.UrlConstants;
 import com.app.demo.httpresponse.HttpGetStatusResponse;
 import com.app.demo.httpresponse.HttpStatusResponse;
 import com.app.demo.model.Timeline;
@@ -54,14 +55,14 @@ public class TimelineController {
 		return ResponseUtil.prepareHttpResponse(HttpStatus.OK.value(),timelines,Constants.ALL_TIMELINE_FOUND);
 }
 	
-	@GetMapping(Constants.GET_TIMEID)
+	@GetMapping(UrlConstants.GET_TIMEID)
 	public ResponseEntity<HttpStatusResponse>  getTimelineByTimeId(@PathVariable Integer timeId) {
 		Timeline timeline = timelineService.getTimelineByTimeId(timeId);
 		return ResponseUtil.prepareSuccessResponse(HttpStatus.OK.value(), timeline, Constants.ALL_TIMELINE_FOUND);
 	
 	}
 	
-	@DeleteMapping(Constants.GET_TIMEID)
+	@DeleteMapping(UrlConstants.GET_TIMEID)
 	public ResponseEntity<HttpStatusResponse> deleteTimeline(@PathVariable Integer timeId) {
 		timelineService.deleteTimeline(timeId);
 		return ResponseUtil.prepareSuccessResponse(HttpStatus.NO_CONTENT.value(), timeId, Constants.TIMELINE_DELETE_SUCCESS);
