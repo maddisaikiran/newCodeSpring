@@ -45,7 +45,6 @@ public class FriendServiceImpl implements FriendService{
 
 	@Override
 	public Friend getFriendById(Integer id) {
-
 		Friend friend = friendRepository.findById(id).get();
 		if(friend == null) {
 			throw new UserNotFoundException(Constants.USER_NOT_FOUND);
@@ -61,6 +60,7 @@ public class FriendServiceImpl implements FriendService{
 
 	@Override
 	public List<User> getUserByFriendByOrderStatusById(Integer id) {
+
 		List<User> users = userRespository.findUserByFriendByOrderStatusById(id);
 		if(users.isEmpty()) {
 			 throw new ResourceNotFoundException(Constants.FRIENDS_NOT_FOUND);
@@ -68,6 +68,5 @@ public class FriendServiceImpl implements FriendService{
 		}else {
 			return users;
 		}
-		
 	}
 }

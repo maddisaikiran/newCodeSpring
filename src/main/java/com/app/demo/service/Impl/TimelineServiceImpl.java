@@ -27,6 +27,7 @@ public class TimelineServiceImpl implements TimelineService{
 		User user = userService.getUserById(userId);
 		
 		timeline.setUser(user);
+		timeline.setCount(0);
 		return timelineRepository.save(timeline);
 	}
 
