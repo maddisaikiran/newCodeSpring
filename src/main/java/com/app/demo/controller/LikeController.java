@@ -16,29 +16,30 @@ import org.springframework.web.bind.annotation.RestController;
 import com.app.demo.constants.Constants;
 import com.app.demo.httpresponse.HttpGetStatusResponse;
 import com.app.demo.httpresponse.HttpStatusResponse;
-import com.app.demo.model.Liked;
-import com.app.demo.service.LikedService;
+import com.app.demo.model.Like;
+import com.app.demo.service.LikeService;
 import com.app.demo.util.ResponseUtil;
 
 @RestController
 @CrossOrigin
 @RequestMapping("/like")
-public class LikedController {
+public class LikeController {
 	
 	@Autowired
-	LikedService likeService;
+	LikeService likeService;
 	
 	@PostMapping("")
-	public ResponseEntity<HttpStatusResponse> createLike(@RequestBody Liked like) {
-		Liked addLike = likeService.createLike(like);
-		return ResponseUtil.prepareSuccessResponse(HttpStatus.CREATED.value(), addLike, Constants.MESSAGE_LIKE);
+	public ResponseEntity<HttpStatusResponse> createLike(@RequestBody Like like) {
+		Like addLike = likeService.createLike(like);
+		return ResponseUtil.prepareSuccessResponse(HttpStatus.CREATED.value(), addLike, Constants.LIKE_ADDED_SUCCESS);
 	}
 	
 	
 	@GetMapping("/{timeId}")
 	public ResponseEntity<HttpGetStatusResponse> getUserLikesByMessageById(@PathVariable(value = "timeId") Integer timeId) {
-		List<Liked> likes = likeService.getUserLikesByMessageById(timeId);
-		return ResponseUtil.prepareHttpResponse(HttpStatus.OK.value(), likes, Constants.MESSAGE_LIKES);
+		List<Like> likes = likeService.getUserLikesByMessageById(timeId);
+		return ResponseUtil.prepareHttpResponse(HttpStatus.OK.value(), likes, Constants.LIKES_FOUND);
 	}
+	
 	
 }

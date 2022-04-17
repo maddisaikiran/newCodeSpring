@@ -1,4 +1,4 @@
-package com.app.demo.service.Impl;
+package com.app.demo.service.impl;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -25,14 +25,12 @@ public class UserSearchServiceImpl implements UserSearchService{
 
 	@Override
 	public List<User> getAllUser() {
-		// TODO Auto-generated method stub
 		return userRespository.findAll();
 	}
 
 	
 	@Override
 	public List<UserDto> getAllFriendForUser(Integer requestedUserId) {
-		// TODO Auto-generated method stub
 		List<User> users= userRespository.findAll();
 		List<Friend> friends= friendServiceImpl.findFriendsByUserId(requestedUserId);
 		users = users.stream().filter(user -> user.getId() != requestedUserId).collect(Collectors.toList());
@@ -44,7 +42,8 @@ public class UserSearchServiceImpl implements UserSearchService{
 				user.setFriend(friendsFinal);
 			}
 		}
-		List<UserDto> userDto=users.stream().map(user-> UserDto.convert(user)).toList();
-		return userDto;
+		
+		return users.stream().map(user-> UserDto.convert(user)).toList();
+		
 	}
 }

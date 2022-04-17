@@ -83,7 +83,7 @@ public class User {
 	@JsonIgnore
 	@OneToMany(mappedBy ="user",cascade = CascadeType.ALL )
 	@ToString.Exclude
-	private List<Liked> likes;
+	private List<Like> likes;
 	
 	@JsonIgnore
 	@OneToMany(mappedBy ="user",cascade = CascadeType.ALL)

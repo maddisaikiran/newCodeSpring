@@ -21,4 +21,6 @@ public interface TimelineService {
 	  List<Timeline> getUserByFriendByTimelineById(Integer userId);
 
 	  void deleteTimeline(Integer timeId);
+	  
+	
 }

@@ -8,19 +8,13 @@ import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.TestMethodOrder;
-import org.junit.jupiter.api.MethodOrderer.OrderAnnotation;
-import org.junit.jupiter.api.Order;
 import org.junit.jupiter.api.Test;
-import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.test.context.ContextConfiguration;
-import org.springframework.test.context.junit4.SpringRunner;
 
-import com.app.demo.SampleApplication;
-import com.app.demo.exception.ValidationException;
+import com.app.demo.FacebookApplication;
 import com.app.demo.model.Timeline;
 import com.app.demo.model.User;
 import com.app.demo.respository.TimelineRepository;
@@ -28,10 +22,8 @@ import com.app.demo.respository.UserRespository;
 import com.app.demo.service.TimelineService;
 import com.app.demo.service.UserService;
 
-@RunWith(SpringRunner.class)
-@ContextConfiguration(classes = SampleApplication.class)
+@ContextConfiguration(classes = FacebookApplication.class)
 @SpringBootTest
-@TestMethodOrder(OrderAnnotation.class)
 public class TimelineServiceTest {
 
 	@Autowired
@@ -54,23 +46,17 @@ public class TimelineServiceTest {
     void setUp() throws Exception {
     	timeline = new Timeline();
     	timeline.setTimeId(33);
-    	timeline.setImage(null);
+    	timeline.setImage("vijay");
     	timeline.setMessage("this is sasi");
     	
     	user = new User();
     	user.setId(2);
     	
-    	timeline.setUser(user);
-    	
-    	//user.getId();
-    	//timeline.setUser(user);
-    	
-    	
+    	timeline.setUser(user); 	
     }
     
     @Test
-    @Order(1)
-    public void addTimeLineTest() throws ValidationException{
+    public void addTimeLineTest(){
     	User user = new User();
     	user.setFullName("rajesh");
     	user.setMobile(9902920219l);
@@ -85,7 +71,6 @@ public class TimelineServiceTest {
     }
     
     @Test
-    @Order(2)
     public void getAllMyTimelineByIdTest() {
     	
     	when(userRespository.findById(user.getId())).thenReturn(Optional.of(user));
@@ -94,7 +79,6 @@ public class TimelineServiceTest {
     }
     
     @Test
-    @Order(3)
     public void getUserByFriendByTimelineByIdTest() {
     	
     	when(timelineRepository.findUserByFriendByTimelineById(user.getId())).thenReturn(Stream.of(new Timeline(), new Timeline()).collect(Collectors.toList()));

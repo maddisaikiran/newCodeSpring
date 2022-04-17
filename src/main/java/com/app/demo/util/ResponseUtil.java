@@ -26,5 +26,8 @@ public class ResponseUtil {
 	public static ResponseEntity<HttpErrorResponse> setCommentFailedResponse(int statusCode,String message){
 		return new ResponseEntity<>(HttpUserErrorResponse.setCommentFailedResponse(statusCode,message),HttpStatus.INTERNAL_SERVER_ERROR);
 	}
+	public static ResponseEntity<HttpGetStatusResponse> prepareMessageNotFound(int statusCode, String message){
+		return new ResponseEntity<>(HttpGetStatusResponse.setFailedResponse(statusCode, message),HttpStatus.INTERNAL_SERVER_ERROR);
+	}
 
 }

@@ -1,4 +1,4 @@
-package com.app.demo.service.Impl;
+package com.app.demo.service.impl;
 
 
 import java.util.List;
@@ -25,6 +25,7 @@ public class TimelineServiceImpl implements TimelineService{
 	@Override
 	public Timeline addTimeLine(Timeline timeline, Integer userId) {
 		User user = userService.getUserById(userId);
+		
 		timeline.setUser(user);
 		return timelineRepository.save(timeline);
 	}
@@ -39,7 +40,7 @@ public class TimelineServiceImpl implements TimelineService{
 		
 		User user = userService.getUserById(id);
 		List<Timeline> timelines = timelineRepository.findAllByUser(user);
-		if(timelines.size() == 0) {
+		if(timelines.isEmpty()) {
 			throw new ResourceNotFoundException("Timeline not added for user Id: "+id);
 		}
 
@@ -50,7 +51,7 @@ public class TimelineServiceImpl implements TimelineService{
 	public List<Timeline> getUserByFriendByTimelineById(Integer userId) {
 		
 		List<Timeline> timelines = timelineRepository.findUserByFriendByTimelineById(userId);
-		if(timelines.size() == 0) {
+		if(timelines.isEmpty()) {
 			throw new ResourceNotFoundException("timeline not found, "+userId);
 		}
 		return timelines;
@@ -58,18 +59,13 @@ public class TimelineServiceImpl implements TimelineService{
 
 	@Override
 	public Timeline getTimelineByTimeId(Integer timeId) {
-		// TODO Auto-generated method stub
 		return timelineRepository.findById(timeId).get();
 	}
 
 	@Override
 	public void deleteTimeline(Integer timeId) {
-		// TODO Auto-generated method stub
 		timelineRepository.deleteById(timeId);
 	}
 
-	
-
-	
 
 }

@@ -14,6 +14,7 @@ import javax.persistence.Lob;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import javax.validation.constraints.Size;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
@@ -38,12 +39,14 @@ public class Timeline {
 	@Column(columnDefinition= "MEDIUMBLOB")
 	private String image;
 	
+	@Column(length=100)
+	@Size(min=6,max=100)
 	private String message;
 
 	@JsonIgnore
 	@OneToMany(mappedBy ="timeline",cascade = CascadeType.ALL )
 	@ToString.Exclude
-	private List<Liked> likes;
+	private List<Like> likes;
 	
 	@ManyToOne
 	@JoinColumn(name="userId")
