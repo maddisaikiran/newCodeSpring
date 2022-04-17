@@ -19,12 +19,12 @@ import org.springframework.http.MediaType;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.web.servlet.MockMvc;
 
-import com.app.demo.SampleApplication;
+import com.app.demo.FacebookApplication;
 import com.app.demo.model.Timeline;
 import com.app.demo.model.User;
 
 @SpringBootTest
-@ContextConfiguration(classes = SampleApplication.class)
+@ContextConfiguration(classes = FacebookApplication.class)
 @AutoConfigureRestDocs(outputDir = "target/generated-snippets")
 @AutoConfigureMockMvc
 public class TimelineControllerTest {

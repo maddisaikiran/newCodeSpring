@@ -12,9 +12,13 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.test.context.ContextConfiguration;
+<<<<<<< Updated upstream
+
+=======
+>>>>>>> Stashed changes
 
 
-import com.app.demo.SampleApplication;
+import com.app.demo.FacebookApplication;
 import com.app.demo.model.Friend;
 import com.app.demo.model.User;
 import com.app.demo.respository.UserRespository;
@@ -22,7 +26,11 @@ import com.app.demo.service.FriendService;
 import com.app.demo.service.UserSearchService;
 
 
+<<<<<<< Updated upstream
 @ContextConfiguration(classes = SampleApplication.class)
+=======
+@ContextConfiguration(classes = FacebookApplication.class)
+>>>>>>> Stashed changes
 @SpringBootTest
 public class UserSearchServiceTest {
 

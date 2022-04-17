@@ -25,6 +25,10 @@ public interface TimelineRepository extends JpaRepository<Timeline, Integer>{
   		+ "    AND f.status_id = 2", nativeQuery = true)
   List<Timeline> findUserByFriendByTimelineById(@Param(value = "userId") Integer userId);
   
+<<<<<<< Updated upstream
   Timeline findByCount(Integer count);
+=======
+
+>>>>>>> Stashed changes
   
 }

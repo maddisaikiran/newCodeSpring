@@ -33,7 +33,7 @@ public class UserController {
 	@Autowired
 	private UserService userService;
 
-	@PostMapping("")
+	@PostMapping
 	public ResponseEntity<HttpStatusResponse> addUser(@Valid @RequestBody User user){
 
 		 user  = userService.addUser(user);
@@ -43,7 +43,7 @@ public class UserController {
 		
 	}
 
-	@PutMapping("")
+	@PutMapping
 	public ResponseEntity<HttpStatusResponse> updateUser(@Valid @RequestBody User user) {
 		
 		User userDetails = userService.updateUser(user);

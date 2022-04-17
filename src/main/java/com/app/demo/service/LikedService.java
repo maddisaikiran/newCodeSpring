@@ -9,4 +9,5 @@ public interface LikedService {
 	Liked createLike(Liked like);
 	
 	List<Liked> getUserLikesByMessageById(Integer timeId);
+	
 }

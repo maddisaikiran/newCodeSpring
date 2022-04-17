@@ -37,7 +37,7 @@ public class FriendController {
 	}
 	
 	
-	@GetMapping("")
+	@GetMapping
 	public ResponseEntity<HttpGetStatusResponse> getAllFriendRequest(){
 		List<Friend> friends= friendService.getAllFriendRequest();
 		return ResponseUtil.prepareHttpResponse(HttpStatus.OK.value(), friends, Constants.ALL_FRIENDS_FOUND);

@@ -14,7 +14,11 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.test.context.ContextConfiguration;
 
+<<<<<<< Updated upstream
 import com.app.demo.SampleApplication;
+=======
+import com.app.demo.FacebookApplication;
+>>>>>>> Stashed changes
 import com.app.demo.model.Timeline;
 import com.app.demo.model.User;
 import com.app.demo.respository.TimelineRepository;
@@ -22,7 +26,11 @@ import com.app.demo.respository.UserRespository;
 import com.app.demo.service.TimelineService;
 import com.app.demo.service.UserService;
 
+<<<<<<< Updated upstream
 @ContextConfiguration(classes = SampleApplication.class)
+=======
+@ContextConfiguration(classes = FacebookApplication.class)
+>>>>>>> Stashed changes
 @SpringBootTest
 public class TimelineServiceTest {
 
