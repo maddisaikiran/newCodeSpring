@@ -54,14 +54,14 @@ public class TimelineController {
 		return ResponseUtil.prepareHttpResponse(HttpStatus.OK.value(),timelines,Constants.ALL_TIMELINE_FOUND);
 }
 	
-	@GetMapping("/{timeId}")
+	@GetMapping(Constants.GET_TIMEID)
 	public ResponseEntity<HttpStatusResponse>  getTimelineByTimeId(@PathVariable Integer timeId) {
 		Timeline timeline = timelineService.getTimelineByTimeId(timeId);
 		return ResponseUtil.prepareSuccessResponse(HttpStatus.OK.value(), timeline, Constants.ALL_TIMELINE_FOUND);
 	
 	}
 	
-	@DeleteMapping("/{timeId}")
+	@DeleteMapping(Constants.GET_TIMEID)
 	public ResponseEntity<HttpStatusResponse> deleteTimeline(@PathVariable Integer timeId) {
 		timelineService.deleteTimeline(timeId);
 		return ResponseUtil.prepareSuccessResponse(HttpStatus.NO_CONTENT.value(), timeId, Constants.TIMELINE_DELETE_SUCCESS);

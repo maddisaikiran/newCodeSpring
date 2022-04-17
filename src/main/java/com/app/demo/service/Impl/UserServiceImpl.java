@@ -3,6 +3,7 @@ package com.app.demo.service.impl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.app.demo.constants.Constants;
 import com.app.demo.exception.UserNotFoundException;
 import com.app.demo.model.User;
 import com.app.demo.respository.UserRespository;
@@ -18,7 +19,10 @@ public class UserServiceImpl implements UserService{
 	
 	@Override
 	public User addUser(User user)  {
+<<<<<<< Updated upstream
 		
+=======
+>>>>>>> Stashed changes
 		return userRespository.save(user);
 	}
 
@@ -44,7 +48,7 @@ public class UserServiceImpl implements UserService{
 	public User getUserById(Integer id){
 		User user = userRespository.findById(id).get();
 		if(user == null) {
-			throw new UserNotFoundException("user not found");
+			throw new UserNotFoundException(Constants.USER_NOT_FOUND);
 		}
 		return user;
 		
@@ -60,6 +64,9 @@ public class UserServiceImpl implements UserService{
 		
 		
 		User user = userRespository.findById(id).get();
+		if(user == null) {
+			throw new UserNotFoundException(Constants.USER_NOT_FOUND);
+		}
 	     user.setUserStatus(userStatus);
 		return userRespository.save(user);
 	}

@@ -28,12 +28,20 @@ import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.web.servlet.MockMvc;
 
 
+<<<<<<< Updated upstream
 import com.app.demo.SampleApplication;
+=======
+import com.app.demo.FacebookApplication;
+>>>>>>> Stashed changes
 import com.app.demo.model.User;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 @SpringBootTest
+<<<<<<< Updated upstream
 @ContextConfiguration(classes = SampleApplication.class)
+=======
+@ContextConfiguration(classes = FacebookApplication.class)
+>>>>>>> Stashed changes
 @AutoConfigureRestDocs(outputDir = "target/generated-snippets")
 @AutoConfigureMockMvc
 public class UserControllerTest {
