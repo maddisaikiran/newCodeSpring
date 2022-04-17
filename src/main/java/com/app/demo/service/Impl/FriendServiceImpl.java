@@ -1,4 +1,4 @@
-package com.app.demo.service.Impl;
+package com.app.demo.service.impl;
 
 import java.util.List;
 import java.util.Optional;
@@ -28,65 +28,41 @@ public class FriendServiceImpl implements FriendService{
 	
 	@Override
 	public Friend createRequest(Friend friend) {
-		// TODO Auto-generated method stub
+
 		FriendStatus friendStatus= friendStatusRepository.findByStatus(friend.getStatusCode());
 		friend.setStatus(friendStatus);
-		//new code
-		//friend.setUser(userRespository.findById(friend.getUser().getId()).get());
-		//new code
 		friend.setFriend(userRespository.findById(friend.getFriend().getId()).get());
 		return friendRepository.save(friend);
 	}
 
 	@Override
 	public List<Friend> getAllFriendRequest() {
-		// TODO Auto-generated method stub
+
 		return friendRepository.findAll();
 	}
 
 	@Override
 	public Friend getFriendById(Integer id) {
-		// TODO Auto-generated method stub
+
 		return friendRepository.findById(id).get();
 	}
 	
 	
-
-//	@Override
-//	public Friend updateRequest(Friend friend) {
-//		// TODO Auto-generated method stub
-//		return friendRepository.save(friend);
-//	}
-
-
-
-//	@Override
-//	public Friend updateRequest(int id) {
-//		// TODO Auto-generated method stub
-//		return friendRepository.findById(id).get();
-//	}
-
-
-
-//	@Override
-//	public Friend updateRequest(Friend friend, int id) {
-//		// TODO Auto-generated method stub
-//		Friend friends = friendRepository.findById(id).get();
-//		Friend updateRequest = friendRespository.save(friends);
-//		return updateRequest;
-//	}
-	
 	@Override
 	public List<Friend> findFriendsByUserId(Integer id) {
-		// TODO Auto-generated method stub
+
 		return friendRepository.findFriendsByUserId(id);
 	}
 
 	@Override
 	public List<User> getUserByFriendByOrderStatusById(Integer id) {
-		// TODO Auto-generated method stub
 		Optional<List<User>> usersOptional = Optional.of(userRespository.findUserByFriendByOrderStatusById(id));
-		return usersOptional.isPresent() ? usersOptional.get() : null;
+		if(usersOptional.isPresent()) {
+			return usersOptional.get();
+		}else {
+			return null;
+		}
+		//return usersOptional.isPresent() ? usersOptional.get() : null;
 	}
 	
 

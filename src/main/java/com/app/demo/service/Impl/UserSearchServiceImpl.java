@@ -1,4 +1,4 @@
-package com.app.demo.service.Impl;
+package com.app.demo.service.impl;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -44,7 +44,7 @@ public class UserSearchServiceImpl implements UserSearchService{
 				user.setFriend(friendsFinal);
 			}
 		}
-		List<UserDto> userDto=users.stream().map(UserDto::convert).toList();
+		List<UserDto> userDto=users.stream().map(user-> UserDto.convert(user)).toList();
 		return userDto;
 	}
 }

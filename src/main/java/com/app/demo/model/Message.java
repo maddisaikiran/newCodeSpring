@@ -8,37 +8,31 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
-import org.springframework.stereotype.Component;
-
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-@Component
-@AllArgsConstructor
-@NoArgsConstructor
 @Data
 @Entity
-@Table
-
+@Table(name="message")
+@AllArgsConstructor
+@NoArgsConstructor
 public class Message {
-	
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Integer messageId;
 	
-	//private Integer id;
-	
-	//private String userName;
-	
-	private String mgs;
-	
 	@ManyToOne
-	@JoinColumn(name="receiver_id")
-	private User message;
-	
-	@ManyToOne
-	@JoinColumn(name="sender_id")
+	@JoinColumn(name="user_id")
 	private User user;
+	
+	@ManyToOne
+	@JoinColumn(name="friend_id")
+	private User friend;
+	
+	private String message;
+	
+	
+	
 
 }

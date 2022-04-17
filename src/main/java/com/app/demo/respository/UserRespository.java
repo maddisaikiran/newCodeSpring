@@ -18,9 +18,7 @@ public interface UserRespository extends JpaRepository <User, Integer>{
 	User findByEmail(String email);
 	User findByEmailAndPassword(String email, String password) ;
 	
-	
-	//@Query("select u from User u left join Friend f on f.friend.id=u.id where f.status.id=2 and f.friend.id=:userId or f.user.id=:userId")
-	
+
 	@Query(value="select * from User u, Friend f WHERE "
 			+ "CASE "
 			+ "WHEN f.user_id=:userId THEN f.friend_id=u.id "

@@ -1,4 +1,6 @@
 package com.app.demo.controller;
+
+
 import javax.validation.Valid;
 
 import org.slf4j.Logger;
@@ -17,7 +19,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.app.demo.constants.*;
-import com.app.demo.exception.ValidationException;
 import com.app.demo.httpresponse.HttpStatusResponse;
 import com.app.demo.model.User;
 import com.app.demo.service.UserService;
@@ -33,47 +34,53 @@ public class UserController {
 	private UserService userService;
 
 	@PostMapping("")
-	public ResponseEntity<HttpStatusResponse> addUser(@Valid @RequestBody User user) throws ValidationException {
+	public ResponseEntity<HttpStatusResponse> addUser(@Valid @RequestBody User user){
 
-		 User user2  = userService.addUser(user);
+		 user  = userService.addUser(user);
 		logger.info("User Created successfully");
-		return ResponseUtil.prepareSuccessResponse(HttpStatus.CREATED.value(), user2,Constants.MESSAGE);
+		return ResponseUtil.prepareSuccessResponse(HttpStatus.CREATED.value(), user,Constants.MESSAGE);
+				
 		
 	}
 
 	@PutMapping("")
-	public ResponseEntity<HttpStatusResponse> updateUser(@Valid @RequestBody User user) throws ValidationException {
+	public ResponseEntity<HttpStatusResponse> updateUser(@Valid @RequestBody User user) {
 		
-		User user2 = userService.updateUser(user);
-		return ResponseUtil.prepareSuccessResponse(HttpStatus.CREATED.value(), user2,Constants.MESSAGE_UPDATE);
+		User userDetails = userService.updateUser(user);
+		logger.info("User Updated successfully");
+		return ResponseUtil.prepareSuccessResponse(HttpStatus.CREATED.value(), userDetails,Constants.USER_UPDATE);
 	}
 
-	@DeleteMapping("s/{id}")
-	public ResponseEntity<HttpStatusResponse> deleteUser(@PathVariable int id){
+	@DeleteMapping("/{id}")
+	public ResponseEntity<HttpStatusResponse> deleteUser(@PathVariable Integer id){
 		userService.deleteUser(id);
 		logger.info("User Deleted Successfully");
-		return ResponseUtil.prepareSuccessResponse(HttpStatus.NO_CONTENT.value(), id,Constants.MESSAGE_DELETE);
+		return ResponseUtil.prepareSuccessResponse(HttpStatus.NO_CONTENT.value(), id,Constants.USER_DELETE);
 		
 	}
 	
-
-	@GetMapping("/user/{id}")
-	public ResponseEntity<HttpStatusResponse> getUserDetailsById(@PathVariable int id) {
+	@GetMapping("/{id}")
+	public ResponseEntity<HttpStatusResponse> getUserDetailsById(@PathVariable int id){
 		User user = userService.getUserById(id);
-		return ResponseUtil.prepareSuccessResponse(HttpStatus.OK.value(), user,Constants.MESSAGE_RETRIVAL);
+		return ResponseUtil.prepareSuccessResponse(HttpStatus.OK.value(), user,Constants.USER_DATA_RETRIVAL);
 	}
 
+	
 	@PostMapping("/login")
 	public User getUserByEmailAndPassword(@RequestBody User user) {
+		logger.info("User login successfully");
 		
-		return userService.getUserByEmailAndPassword(user.getEmail(), user.getPassword());
+	  return userService.getUserByEmailAndPassword(user.getEmail(), user.getPassword());
+		
 	}
 	
-	@PutMapping("/{id}/userStatus/{userStatus}")
+	@PutMapping("/{id}/status/{userStatus}")
 	public ResponseEntity<HttpStatusResponse> updateUserStatus(@PathVariable Integer id, @PathVariable boolean userStatus) {
 		User user = userService.updateUserStatus(id,userStatus);
-		return ResponseUtil.prepareSuccessResponse(HttpStatus.CREATED.value(), user,Constants.MESSAGE_STATUS);
+		logger.info("User status Updated Successfully");
+		return ResponseUtil.prepareSuccessResponse(HttpStatus.CREATED.value(), user,Constants.USER_STATUS_UPDATED);
 	}
+	
 	
 
 }

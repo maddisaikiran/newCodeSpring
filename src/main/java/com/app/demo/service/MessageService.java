@@ -1,11 +1,14 @@
 package com.app.demo.service;
 
+import java.util.List;
+
 import com.app.demo.model.Message;
 
 public interface MessageService {
 
-	Message addMessage (Message message);
-	Message sentMessage(Message messageList,Integer id);
-	Message sendMessage(Message message);
+	Message createMessage(Message message);
 	
+	List<Message> getMessagesByFriendId(Integer friendId);
+	
+	List<Message> getMessagesByUserId(Integer userId);
 }
