@@ -38,25 +38,22 @@ public class UserController {
 
 		 user  = userService.addUser(user);
 		logger.info("User Created successfully");
-		return ResponseUtil.prepareSuccessResponse(HttpStatus.CREATED.value(), user,Constants.MESSAGE);
-				
+		return ResponseUtil.prepareSuccessResponse(HttpStatus.CREATED.value(), user,Constants.USER_CREATED_SUCCESS);			
 		
 	}
 
 	@PutMapping
 	public ResponseEntity<HttpStatusResponse> updateUser(@Valid @RequestBody User user) {
-		
 		User userDetails = userService.updateUser(user);
 		logger.info("User Updated successfully");
-		return ResponseUtil.prepareSuccessResponse(HttpStatus.CREATED.value(), userDetails,Constants.USER_UPDATE);
+		return ResponseUtil.prepareSuccessResponse(HttpStatus.CREATED.value(), userDetails,Constants.USER_UPDATE_SUCCESS);
 	}
 
 	@DeleteMapping("/{id}")
 	public ResponseEntity<HttpStatusResponse> deleteUser(@PathVariable Integer id){
 		userService.deleteUser(id);
 		logger.info("User Deleted Successfully");
-		return ResponseUtil.prepareSuccessResponse(HttpStatus.NO_CONTENT.value(), id,Constants.USER_DELETE);
-		
+		return ResponseUtil.prepareSuccessResponse(HttpStatus.NO_CONTENT.value(), id,Constants.USER_DELETE_SUCCESS);
 	}
 	
 	@GetMapping("/{id}")
@@ -65,7 +62,6 @@ public class UserController {
 		return ResponseUtil.prepareSuccessResponse(HttpStatus.OK.value(), user,Constants.USER_DATA_RETRIVAL);
 	}
 
-	
 	@PostMapping("/login")
 	public User getUserByEmailAndPassword(@RequestBody User user) {
 		logger.info("User login successfully");
@@ -80,7 +76,4 @@ public class UserController {
 		logger.info("User status Updated Successfully");
 		return ResponseUtil.prepareSuccessResponse(HttpStatus.CREATED.value(), user,Constants.USER_STATUS_UPDATED);
 	}
-	
-	
-
 }

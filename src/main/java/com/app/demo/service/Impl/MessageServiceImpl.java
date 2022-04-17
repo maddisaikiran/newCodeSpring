@@ -42,11 +42,10 @@ public class MessageServiceImpl implements MessageService{
 	@Override
 	public List<Message> getMessagesByUserId(Integer userId) {
 		 List<Message> messages = messageRepository.findMessagesByUserId(userId);
-//		 if(messages.isEmpty()) {
-//			 throw new ResourceNotFoundException("message not found");
-//		 }
+		 if(messages.isEmpty()) {
+			 throw new ResourceNotFoundException("message not found");
+		 }
 			return messages;
 	}
-	
 
 }

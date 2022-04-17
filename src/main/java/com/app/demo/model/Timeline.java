@@ -48,7 +48,7 @@ public class Timeline {
 	@JsonIgnore
 	@OneToMany(mappedBy ="timeline",cascade = CascadeType.ALL )
 	@ToString.Exclude
-	private List<Liked> likes;
+	private List<Like> likes;
 	
 	@ManyToOne
 	@JoinColumn(name="userId")

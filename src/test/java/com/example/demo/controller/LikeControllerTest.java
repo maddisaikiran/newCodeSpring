@@ -24,7 +24,7 @@ import com.app.demo.FacebookApplication;
 @ContextConfiguration(classes = FacebookApplication.class)
 @AutoConfigureRestDocs(outputDir = "target/generated-snippets")
 @AutoConfigureMockMvc
-public class LikedControllerTest {
+public class LikeControllerTest {
 
 	@Autowired
 	private MockMvc mvc;

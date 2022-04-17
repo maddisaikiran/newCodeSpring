@@ -45,20 +45,14 @@ public class FriendServiceImpl implements FriendService{
 
 	@Override
 	public Friend getFriendById(Integer id) {
-
-<<<<<<< Updated upstream
-		return friendRepository.findById(id).get();
-=======
 		Friend friend = friendRepository.findById(id).get();
 		if(friend == null) {
 			throw new UserNotFoundException(Constants.USER_NOT_FOUND);
 		}
 		return friend;
->>>>>>> Stashed changes
 	}
 	
-	
-	@Override
+		@Override
 	public List<Friend> findFriendsByUserId(Integer id) {
 
 		return friendRepository.findFriendsByUserId(id);
@@ -66,15 +60,7 @@ public class FriendServiceImpl implements FriendService{
 
 	@Override
 	public List<User> getUserByFriendByOrderStatusById(Integer id) {
-<<<<<<< Updated upstream
-		Optional<List<User>> usersOptional = Optional.of(userRespository.findUserByFriendByOrderStatusById(id));
-		if(usersOptional.isPresent()) {
-			return usersOptional.get();
-		}else {
-			return null;
-		}
-		//return usersOptional.isPresent() ? usersOptional.get() : null;
-=======
+
 		List<User> users = userRespository.findUserByFriendByOrderStatusById(id);
 		if(users.isEmpty()) {
 			 throw new ResourceNotFoundException(Constants.FRIENDS_NOT_FOUND);
@@ -82,9 +68,5 @@ public class FriendServiceImpl implements FriendService{
 		}else {
 			return users;
 		}
-		
->>>>>>> Stashed changes
 	}
-	
-
 }

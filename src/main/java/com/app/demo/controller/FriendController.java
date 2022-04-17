@@ -29,7 +29,7 @@ public class FriendController {
 	private FriendService friendService;
 	
 	
-	@PostMapping("/createrequest")
+	@PostMapping("/request")
 	public ResponseEntity<HttpStatusResponse> createRequest(@Valid @RequestBody Friend friend) {
 		Friend friendObject = friendService.createRequest(friend);
 		return ResponseUtil.prepareSuccessResponse(HttpStatus.CREATED.value(), friendObject,Constants.FRIEND_REQUEST_SEND);

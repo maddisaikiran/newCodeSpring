@@ -6,31 +6,31 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.app.demo.exception.ResourceNotFoundException;
-import com.app.demo.model.Liked;
-import com.app.demo.respository.LikedRepository;
+import com.app.demo.model.Like;
+import com.app.demo.respository.LikeRepository;
 import com.app.demo.respository.TimelineRepository;
-import com.app.demo.service.LikedService;
+import com.app.demo.service.LikeService;
 
 
 @Service
-public class LikedServiceImpl implements LikedService{
+public class LikeServiceImpl implements LikeService{
 	
 	@Autowired
-	LikedRepository likeRepository ;
+	LikeRepository likeRepository ;
 	
 	@Autowired
 	TimelineRepository timelineRepository;
 	
 	@Override
-	public Liked createLike(Liked like) {
+	public Like createLike(Like like) {
 		like.setTimeline(timelineRepository.findById(like.getTimeline().getTimeId()).get());
 		return likeRepository.save(like);
 	}
 
 	@Override
-	public List<Liked> getUserLikesByMessageById(Integer timeId) {
+	public List<Like> getUserLikesByMessageById(Integer timeId) {
 		
-		List<Liked> likes = likeRepository.findUserLikesByMessageById(timeId);
+		List<Like> likes = likeRepository.findUserLikesByMessageById(timeId);
 		if(likes.isEmpty()) {
 			throw new ResourceNotFoundException("like not found");
 		}

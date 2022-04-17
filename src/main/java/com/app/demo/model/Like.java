@@ -21,7 +21,7 @@ import lombok.NoArgsConstructor;
 
 @AllArgsConstructor
 @NoArgsConstructor
-public class Liked {
+public class Like {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)

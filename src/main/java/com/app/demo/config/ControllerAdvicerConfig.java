@@ -41,6 +41,4 @@ public class ControllerAdvicerConfig {
 	public ResponseEntity<HttpErrorResponse> handleResourceNotFound(ResourceNotFoundException e){
 		return ResponseUtil.setCommentFailedResponse(HttpStatus.INTERNAL_SERVER_ERROR.value(), e.getMessage());
 	}
-	
-
 }

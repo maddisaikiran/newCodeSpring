@@ -19,10 +19,6 @@ public class UserServiceImpl implements UserService{
 	
 	@Override
 	public User addUser(User user)  {
-<<<<<<< Updated upstream
-		
-=======
->>>>>>> Stashed changes
 		return userRespository.save(user);
 	}
 

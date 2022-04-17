@@ -67,6 +67,4 @@ public class TimelineServiceImpl implements TimelineService{
 	public void deleteTimeline(Integer timeId) {
 		timelineRepository.deleteById(timeId);
 	}
-
-
 }

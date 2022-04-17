@@ -42,8 +42,8 @@ public class UserSearchServiceImpl implements UserSearchService{
 				user.setFriend(friendsFinal);
 			}
 		}
-		//List<UserDto> userDto=
+		
 		return users.stream().map(user-> UserDto.convert(user)).toList();
-		//return userDto;
+		
 	}
 }

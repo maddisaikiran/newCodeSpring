@@ -38,12 +38,9 @@ public class MessageController {
 	@GetMapping("/friend/{friendId}")
 	public ResponseEntity<HttpGetStatusResponse> getMessagesByFriendId(@PathVariable(value="friendId") Integer friendId){
 		List<Message> messages = messageService.getMessagesByFriendId(friendId);
-<<<<<<< Updated upstream
-=======
 		if(CollectionUtils.isEmpty(messages)) {
 			return ResponseUtil.prepareMessageNotFound(HttpStatus.INTERNAL_SERVER_ERROR.value(), Constants.MESSAGE_NOT_FOUND);
 		}
->>>>>>> Stashed changes
 		return ResponseUtil.prepareHttpResponse(HttpStatus.OK.value(), messages, Constants.MESSAGE_FOUND);
 	}
 	
