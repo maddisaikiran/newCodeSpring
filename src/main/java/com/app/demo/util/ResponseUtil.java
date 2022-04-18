@@ -26,23 +26,7 @@ public class ResponseUtil {
 	public static ResponseEntity<HttpErrorResponse> setCommentFailedResponse(int statusCode,String message){
 		return new ResponseEntity<>(HttpUserErrorResponse.setCommentFailedResponse(statusCode,message),HttpStatus.INTERNAL_SERVER_ERROR);
 	}
-	public static ResponseEntity<HttpGetStatusResponse> prepareMessageNotFound(int statusCode, String message){
-		return new ResponseEntity<>(HttpGetStatusResponse.setFailedResponse(statusCode, message),HttpStatus.INTERNAL_SERVER_ERROR);
-	}
-	
-	public static ResponseEntity<HttpGetStatusResponse> prepareLikeNotFound(int statusCode, String message){
-		return new ResponseEntity<>(HttpGetStatusResponse.setFailedResponse(statusCode, message),HttpStatus.INTERNAL_SERVER_ERROR);
-	}
-	
-	public static ResponseEntity<HttpGetStatusResponse> prepareCommentNotFound(int statusCode, String message){
-		return new ResponseEntity<>(HttpGetStatusResponse.setFailedResponse(statusCode, message),HttpStatus.INTERNAL_SERVER_ERROR);
-	}
-
-	public static ResponseEntity<HttpGetStatusResponse> prepareTimelinesNotFound(int statusCode, String message){
-		return new ResponseEntity<>(HttpGetStatusResponse.setFailedResponse(statusCode, message),HttpStatus.INTERNAL_SERVER_ERROR);
-	}
-	
-	public static ResponseEntity<HttpGetStatusResponse> prepareFriendsNotFound(int statusCode, String message){
+	public static ResponseEntity<HttpGetStatusResponse> prepareErrorResponse(int statusCode, String message){
 		return new ResponseEntity<>(HttpGetStatusResponse.setFailedResponse(statusCode, message),HttpStatus.INTERNAL_SERVER_ERROR);
 	}
 }

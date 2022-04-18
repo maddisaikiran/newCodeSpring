@@ -39,7 +39,7 @@ public class MessageController {
 	public ResponseEntity<HttpGetStatusResponse> getMessagesByFriendId(@PathVariable(value="friendId") Integer friendId){
 		List<Message> messages = messageService.getMessagesByFriendId(friendId);
 		if(CollectionUtils.isEmpty(messages)) {
-			return ResponseUtil.prepareMessageNotFound(HttpStatus.INTERNAL_SERVER_ERROR.value(), Constants.MESSAGE_NOT_FOUND);
+			return ResponseUtil.prepareErrorResponse(HttpStatus.INTERNAL_SERVER_ERROR.value(), Constants.MESSAGE_NOT_FOUND);
 		}
 		return ResponseUtil.prepareHttpResponse(HttpStatus.OK.value(), messages, Constants.MESSAGE_FOUND);
 	}
@@ -48,7 +48,7 @@ public class MessageController {
 	public ResponseEntity<HttpGetStatusResponse> getMessagesByUserId(@PathVariable(value="userId") Integer userId){
 		List<Message> messages = messageService.getMessagesByUserId(userId);
 		if(CollectionUtils.isEmpty(messages)) {
-			return ResponseUtil.prepareMessageNotFound(HttpStatus.INTERNAL_SERVER_ERROR.value(), Constants.MESSAGE_NOT_FOUND);
+			return ResponseUtil.prepareErrorResponse(HttpStatus.INTERNAL_SERVER_ERROR.value(), Constants.MESSAGE_NOT_FOUND);
 		}
 		return ResponseUtil.prepareHttpResponse(HttpStatus.OK.value(), messages, Constants.MESSAGE_FOUND);
 	}

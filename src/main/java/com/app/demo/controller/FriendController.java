@@ -42,7 +42,7 @@ public class FriendController {
 	public ResponseEntity<HttpGetStatusResponse> getAllFriendRequest(){
 		List<Friend> friends= friendService.getAllFriendRequest();
 		if(CollectionUtils.isEmpty(friends)) {
-			return ResponseUtil.prepareFriendsNotFound(HttpStatus.INTERNAL_SERVER_ERROR.value(),Constants.FRIENDS_NOT_FOUND);
+			return ResponseUtil.prepareErrorResponse(HttpStatus.INTERNAL_SERVER_ERROR.value(),Constants.FRIENDS_NOT_FOUND);
 		}
 		return ResponseUtil.prepareHttpResponse(HttpStatus.OK.value(), friends, Constants.ALL_FRIENDS_FOUND);
 	}

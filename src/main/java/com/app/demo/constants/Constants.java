@@ -23,7 +23,7 @@ public class Constants {
 	public static final String ALL_FRIENDS_FOUND ="All friend list found";
 	public static final String MESSAGE_SENT_SUCCESS ="message sent successfully";
 	public static final String MESSAGE_FOUND = "my messages found";
-	public static final String FRIENDS_NOT_FOUND = "Friend not found";
+	public static final String FRIENDS_NOT_FOUND = "Friends not found";
 	public static final String USER_NOT_FOUND ="User not found";
 	public static final String LIKES_NOT_FOUND ="Likes not found";
 	public static final String COMMENTS_NOT_FOUND ="Comments not found";
