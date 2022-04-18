@@ -11,8 +11,9 @@ import com.app.demo.respository.TimelineRepository;
 import com.app.demo.service.CommentService;
 
 @Service
-public class CommentServiceImpl implements CommentService{
+public class CommentServiceImpl implements CommentService {
 
+	
 	@Autowired
 	TimelineRepository timelineRepository;
 	
@@ -26,17 +27,14 @@ public class CommentServiceImpl implements CommentService{
 	}
 
 	@Override
-	public List<Comment> getCommentsByMessageId(Integer timeId) {
-
-		return commentRepository.findCommentsByMessageId(timeId);
-		 
+	public void deleteComment(Integer commentId) {
+		
+		commentRepository.deleteById(commentId);
 	}
 
 	@Override
-	public void deleteComment(Integer commentId) {
-
-		commentRepository.deleteById(commentId);
+	public List<Comment> getCommentsByMessageId(Integer timeId) {
+		return commentRepository.findCommentsByMessageId(timeId);
 	}
-	
 
 }
