@@ -40,6 +40,5 @@ public class MessageServiceImpl implements MessageService{
 		
 	return messageRepository.findMessagesByUserId(userId);		
 	}
-	
 
 }
