@@ -40,7 +40,7 @@ public class LikeController {
 	public ResponseEntity<HttpGetStatusResponse> getUserLikesByMessageById(@PathVariable(value = "timeId") Integer timeId) {
 		List<Like> likes = likeService.getUserLikesByMessageById(timeId);
 		if(CollectionUtils.isEmpty(likes)) {
-			return ResponseUtil.prepareLikeNotFound(HttpStatus.INTERNAL_SERVER_ERROR.value(), Constants.LIKES_NOT_FOUND);
+			return ResponseUtil.prepareErrorResponse(HttpStatus.INTERNAL_SERVER_ERROR.value(), Constants.LIKES_NOT_FOUND);
 		}
 		return ResponseUtil.prepareHttpResponse(HttpStatus.OK.value(), likes, Constants.LIKES_FOUND);
 	}

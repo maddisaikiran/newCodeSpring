@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.util.CollectionUtils;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -41,6 +42,9 @@ public class UserNetworkController {
 	@GetMapping("/friends/{friendId}")
 	public ResponseEntity <HttpGetStatusResponse> getUserByFriendByOrderStatusById(@PathVariable(value = "friendId") int friendId){
 		List<User> users = service.getUserByFriendByOrderStatusById(friendId);
+		if(CollectionUtils.isEmpty(users)) {
+			return ResponseUtil.prepareErrorResponse(HttpStatus.INTERNAL_SERVER_ERROR.value(), Constants.FRIENDS_NOT_FOUND);
+		}
 		return ResponseUtil.prepareHttpResponse(HttpStatus.OK.value(), users,Constants.MY_FRIENDS_FOUND);
 	}
 }

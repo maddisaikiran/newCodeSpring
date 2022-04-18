@@ -50,7 +50,7 @@ public class CommentController {
 	public ResponseEntity<HttpGetStatusResponse> getCommentsByMessageId(@PathVariable(value = "timeId") Integer timeId){
 		List<Comment> comments = commentService.getCommentsByMessageId(timeId);
 		if(CollectionUtils.isEmpty(comments)) {
-			return ResponseUtil.prepareCommentNotFound(HttpStatus.INTERNAL_SERVER_ERROR.value(), Constants.COMMENTS_NOT_FOUND);
+			return ResponseUtil.prepareErrorResponse(HttpStatus.INTERNAL_SERVER_ERROR.value(), Constants.COMMENTS_NOT_FOUND);
 		}
 		return ResponseUtil.prepareHttpResponse(HttpStatus.OK.value(), comments, Constants.COMMENTS_FOUND);
 	}

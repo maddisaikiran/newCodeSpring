@@ -42,15 +42,16 @@ public class TimelineController {
 	}
 	
 	@GetMapping
-	public List<Timeline> getAllMyTimeline() {
-		return timelineService.getAllMyTimeline();
+	public ResponseEntity<HttpGetStatusResponse> getAllMyTimeline() {
+		List<Timeline> timelines = timelineService.getAllMyTimeline();
+		return ResponseUtil.prepareHttpResponse(HttpStatus.OK.value(), timelines, Constants.ALL_TIMELINE_FOUND);
 	}
 	
 	@GetMapping("/user/{id}")
 	public ResponseEntity <HttpGetStatusResponse> getAllMyTimelineById(@PathVariable Integer id){
 	List<Timeline> timelines = timelineService.getAllMyTimelineById(id);
 	if(CollectionUtils.isEmpty(timelines)) {
-		return ResponseUtil.prepareTimelinesNotFound(HttpStatus.INTERNAL_SERVER_ERROR.value(), Constants.MY_TIMELINES_NOT_FOUND);
+		return ResponseUtil.prepareErrorResponse(HttpStatus.INTERNAL_SERVER_ERROR.value(), Constants.MY_TIMELINES_NOT_FOUND);
 	}
 	return ResponseUtil.prepareHttpResponse(HttpStatus.OK.value(), timelines,Constants.MY_TIMELINE_FOUND );
 	}
@@ -59,7 +60,7 @@ public class TimelineController {
 	public ResponseEntity <HttpGetStatusResponse> getUserByFriendByTimelineById(@PathVariable(value = "userId") Integer userId){
         List<Timeline> timelines = timelineService.getUserByFriendByTimelineById(userId);
         if(CollectionUtils.isEmpty(timelines)) {
-    		return ResponseUtil.prepareTimelinesNotFound(HttpStatus.INTERNAL_SERVER_ERROR.value(), Constants.TIMELINES_NOT_FOUND);
+    		return ResponseUtil.prepareErrorResponse(HttpStatus.INTERNAL_SERVER_ERROR.value(), Constants.TIMELINES_NOT_FOUND);
     	}
 		return ResponseUtil.prepareHttpResponse(HttpStatus.OK.value(),timelines,Constants.ALL_TIMELINE_FOUND);
 }
@@ -67,7 +68,6 @@ public class TimelineController {
 	@GetMapping(UrlConstants.GET_TIMEID)
 	public ResponseEntity<HttpStatusResponse>  getTimelineByTimeId(@PathVariable Integer timeId) {
 		Timeline timeline = timelineService.getTimelineByTimeId(timeId);
-		
 		return ResponseUtil.prepareSuccessResponse(HttpStatus.OK.value(), timeline, Constants.ALL_TIMELINE_FOUND);
 	
 	}
