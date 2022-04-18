@@ -1,5 +1,6 @@
 package com.app.demo.model;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -20,7 +21,8 @@ import lombok.NoArgsConstructor;
 public class Message {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
-	private Integer messageId;
+	@Column(name="messageId")
+	private Integer id;
 	
 	@ManyToOne
 	@JoinColumn(name="user_id")

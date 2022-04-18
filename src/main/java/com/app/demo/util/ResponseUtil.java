@@ -29,5 +29,20 @@ public class ResponseUtil {
 	public static ResponseEntity<HttpGetStatusResponse> prepareMessageNotFound(int statusCode, String message){
 		return new ResponseEntity<>(HttpGetStatusResponse.setFailedResponse(statusCode, message),HttpStatus.INTERNAL_SERVER_ERROR);
 	}
+	
+	public static ResponseEntity<HttpGetStatusResponse> prepareLikeNotFound(int statusCode, String message){
+		return new ResponseEntity<>(HttpGetStatusResponse.setFailedResponse(statusCode, message),HttpStatus.INTERNAL_SERVER_ERROR);
+	}
+	
+	public static ResponseEntity<HttpGetStatusResponse> prepareCommentNotFound(int statusCode, String message){
+		return new ResponseEntity<>(HttpGetStatusResponse.setFailedResponse(statusCode, message),HttpStatus.INTERNAL_SERVER_ERROR);
+	}
 
+	public static ResponseEntity<HttpGetStatusResponse> prepareTimelinesNotFound(int statusCode, String message){
+		return new ResponseEntity<>(HttpGetStatusResponse.setFailedResponse(statusCode, message),HttpStatus.INTERNAL_SERVER_ERROR);
+	}
+	
+	public static ResponseEntity<HttpGetStatusResponse> prepareFriendsNotFound(int statusCode, String message){
+		return new ResponseEntity<>(HttpGetStatusResponse.setFailedResponse(statusCode, message),HttpStatus.INTERNAL_SERVER_ERROR);
+	}
 }

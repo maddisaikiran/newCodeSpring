@@ -5,7 +5,6 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.app.demo.exception.ResourceNotFoundException;
 import com.app.demo.model.Comment;
 import com.app.demo.respository.CommentRepository;
 import com.app.demo.respository.TimelineRepository;
@@ -22,18 +21,15 @@ public class CommentServiceImpl implements CommentService{
 	
 	@Override
 	public Comment createComment(Comment comment) {
-		comment.setTimeline(timelineRepository.findById(comment.getTimeline().getTimeId()).get());
+		comment.setTimeline(timelineRepository.findById(comment.getTimeline().getId()).get());
 		return commentRepository.save(comment);
 	}
 
 	@Override
 	public List<Comment> getCommentsByMessageId(Integer timeId) {
 
-		List<Comment> comments = commentRepository.findCommentsByMessageId(timeId);
-		if(comments.isEmpty()) {
-			throw new ResourceNotFoundException("comment not found");
-		}
-		return comments;
+		return commentRepository.findCommentsByMessageId(timeId);
+		 
 	}
 
 	@Override

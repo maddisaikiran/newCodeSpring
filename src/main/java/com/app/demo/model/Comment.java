@@ -23,7 +23,8 @@ public class Comment {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
-	private Integer commentId;
+	@Column(name="commentId")
+	private Integer id;
 	
 	@ManyToOne
 	@JoinColumn(name="messageId")
