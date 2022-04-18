@@ -29,9 +29,9 @@ public class LikeController {
 	@Autowired
 	LikeService likeService;
 	
-	@PostMapping("")
-	public ResponseEntity<HttpStatusResponse> createLike(@RequestBody Liked like) {
-		Liked addLike = likeService.createLike(like);
+	@PostMapping
+	public ResponseEntity<HttpStatusResponse> createLike(@RequestBody Like like) {
+		Like addLike = likeService.createLike(like);
 		return ResponseUtil.prepareSuccessResponse(HttpStatus.CREATED.value(), addLike, Constants.LIKE_ADDED_SUCCESS);
 	}
 	
