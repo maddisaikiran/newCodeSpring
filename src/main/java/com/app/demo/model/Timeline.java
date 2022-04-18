@@ -43,8 +43,6 @@ public class Timeline {
 	@Column(length=100)
 	@Size(min=6,max=100)
 	private String message;
-	
-	private Integer count;
 
 	@JsonIgnore
 	@OneToMany(mappedBy ="timeline",cascade = CascadeType.ALL )

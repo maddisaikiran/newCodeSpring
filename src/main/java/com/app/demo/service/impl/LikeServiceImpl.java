@@ -10,7 +10,6 @@ import com.app.demo.respository.LikeRepository;
 import com.app.demo.respository.TimelineRepository;
 import com.app.demo.service.LikeService;
 
-
 @Service
 public class LikeServiceImpl implements LikeService{
 	
@@ -19,7 +18,7 @@ public class LikeServiceImpl implements LikeService{
 	
 	@Autowired
 	TimelineRepository timelineRepository;
-	
+
 	@Override
 	public Like createLike(Like like) {
 		like.setTimeline(timelineRepository.findById(like.getTimeline().getId()).get());
@@ -28,11 +27,6 @@ public class LikeServiceImpl implements LikeService{
 
 	@Override
 	public List<Like> getUserLikesByMessageById(Integer timeId) {
-		
 		return likeRepository.findUserLikesByMessageById(timeId);
-		
 	}
-
-	
-
 }
