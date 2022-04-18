@@ -13,7 +13,6 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.test.context.ContextConfiguration;
 
-
 import com.app.demo.FacebookApplication;
 import com.app.demo.model.Friend;
 import com.app.demo.model.User;
