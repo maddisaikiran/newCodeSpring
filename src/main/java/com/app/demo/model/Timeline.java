@@ -33,7 +33,8 @@ public class Timeline {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
-	private Integer timeId;
+	@Column(name="timeId")
+	private Integer id;
 	
 	@Lob
 	@Column(columnDefinition= "MEDIUMBLOB")

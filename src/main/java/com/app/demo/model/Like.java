@@ -25,8 +25,8 @@ public class Like {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
-	@Column(name="like_id")
-	private Integer likeId;
+	@Column(name="likeId")
+	private Integer id;
 	
 	
 	@ManyToOne

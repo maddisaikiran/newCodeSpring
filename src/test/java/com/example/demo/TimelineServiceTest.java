@@ -46,7 +46,7 @@ public class TimelineServiceTest {
     @BeforeEach
     void setUp() throws Exception {
     	timeline = new Timeline();
-    	timeline.setTimeId(33);
+    	timeline.setId(33);
     	timeline.setImage("vijay");
     	timeline.setMessage("this is sasi");
     	
