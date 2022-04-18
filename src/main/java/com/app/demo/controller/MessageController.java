@@ -29,7 +29,7 @@ public class MessageController {
 	@Autowired
 	MessageService messageService;
 	
-	@PostMapping("")
+	@PostMapping
 	public ResponseEntity<HttpStatusResponse> createMessage(@RequestBody Message message) {
 		Message createMessage = messageService.createMessage(message);
 		return ResponseUtil.prepareSuccessResponse(HttpStatus.CREATED.value(), createMessage, Constants.MESSAGE_SENT_SUCCESS);

@@ -2,9 +2,12 @@ package com.app.demo.controller;
 
 import java.util.List;
 
+import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.util.CollectionUtils;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -29,8 +32,8 @@ public class CommentController {
 	@Autowired
 	CommentService commentService;
 	
-	@PostMapping("")
-	public ResponseEntity<HttpStatusResponse> createComment(@RequestBody  Comment comment) {
+	@PostMapping
+	public ResponseEntity<HttpStatusResponse> createComment(@Valid @RequestBody  Comment comment) {
 		Comment addComment = commentService.createComment(comment);
 		return ResponseUtil.prepareSuccessResponse(HttpStatus.CREATED.value(), addComment, Constants.COMMENT_ADDED_SUCCESS);
 		
@@ -43,9 +46,12 @@ public class CommentController {
 	
 	
 	
-	@GetMapping("/{timeId}")
+	@GetMapping("/time/{timeId}")
 	public ResponseEntity<HttpGetStatusResponse> getCommentsByMessageId(@PathVariable(value = "timeId") Integer timeId){
 		List<Comment> comments = commentService.getCommentsByMessageId(timeId);
+		if(CollectionUtils.isEmpty(comments)) {
+			return ResponseUtil.prepareCommentNotFound(HttpStatus.INTERNAL_SERVER_ERROR.value(), Constants.COMMENTS_NOT_FOUND);
+		}
 		return ResponseUtil.prepareHttpResponse(HttpStatus.OK.value(), comments, Constants.COMMENTS_FOUND);
 	}
 }

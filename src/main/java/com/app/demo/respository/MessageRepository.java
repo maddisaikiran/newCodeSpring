@@ -12,9 +12,9 @@ import com.app.demo.model.Message;
 @Repository
 public interface MessageRepository extends JpaRepository<Message, Integer>{
 
-	@Query(value="select * from User u LEFT JOIN Message m on u.id = m.user_id  where m.friend_id =:friendId",nativeQuery = true)
+	@Query(value="select m from Message m LEFT JOIN User u on u.id = m.user.id where m.friend.id = (:friendId)")
 	List<Message> findMessagesByFriendId(@Param(value="friendId")Integer friendId);
 	
-	@Query(value="select * from User u LEFT JOIN Message m on u.id = m.user_id  where m.user_id =:userId",nativeQuery = true)
+	@Query(value="select m from Message m LEFT JOIN User u on u.id = m.user.id where m.user.id = (:userId)")
 	List<Message> findMessagesByUserId(@Param(value="userId")Integer userId);
 }

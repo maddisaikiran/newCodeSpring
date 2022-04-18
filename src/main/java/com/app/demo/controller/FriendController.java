@@ -7,6 +7,7 @@ import javax.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.util.CollectionUtils;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -40,6 +41,9 @@ public class FriendController {
 	@GetMapping
 	public ResponseEntity<HttpGetStatusResponse> getAllFriendRequest(){
 		List<Friend> friends= friendService.getAllFriendRequest();
+		if(CollectionUtils.isEmpty(friends)) {
+			return ResponseUtil.prepareFriendsNotFound(HttpStatus.INTERNAL_SERVER_ERROR.value(),Constants.FRIENDS_NOT_FOUND);
+		}
 		return ResponseUtil.prepareHttpResponse(HttpStatus.OK.value(), friends, Constants.ALL_FRIENDS_FOUND);
 	}
 
